@@ -1,0 +1,56 @@
+@charset "UTF-8";
+/** 
+ * Test Styles
+ *
+ *
+ */
+/* Reset styles browser */
+* {
+    font-family: 'Roboto', sans-serif;
+}
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/* Reset styles browser end */
+/* Navbar styles */
+.navbar {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    background-color: teal;
+    box-shadow: 0 2px 5px gray;
+    width: 100%;
+}
+.logo, .account {
+    text-decoration: none;
+    color: #FFF;
+}
+.logo {
+    margin-left: 30px;
+    flex-grow: 1;
+}
+.account {
+    flex-grow: 0.1;
+}
+/* Navbar styles */
+/* Main styles */
+.container {
+    width: 85%;
+    margin: 0 auto;
+}
+/* Main styles end */
+/* Styles for footer */
+.footer {
+    display: flex;
+    background-color: #FFF;
+    box-shadow: 0 -2px 5px gray;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+}
+/* Styles for footer end */
