@@ -1,8 +1,14 @@
 {% extends 'layout.html' %}
+{{ js|safe }}
 {% block title %}Index{% endblock title %}
-<!-- {% block head %}{{ super() }}{% endblock head %} -->
+<!-- {% block head %}
+  {{ js|safe }}
+  {{ super() }}
+{% endblock head %} -->
 {% block content %}
+  {{ js|safe }}
   <h1>Render the template</h1>
   <p class="important">
     Welcome to BeSafe homepage.
+  {% include 'partials/signUp.html' %}
 {% endblock content %}
