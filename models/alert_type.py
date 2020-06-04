@@ -28,6 +28,7 @@ class Alerttype:
         elif Alerttype.valid_args(args):
             self._idAlerttype = str(uuid4())
             self._name = str(args[0])
+            self._level = int(args[1])
 
     @classmethod
     def valid_args(cls, args):
@@ -35,10 +36,12 @@ class Alerttype:
         verify if all the values are correct
             0: description or name
         """
-        if len(args) != 1:
+        if len(args) != 2:
             raise SyntaxError("Incorrect number of attributes")
         if len(args[0]) == 0:
             raise ValueError("Empty name or description")
+        if type(args[1]) != int:
+            raise ValueError("Level need to be type int")
         return True
 
     @property
@@ -76,6 +79,20 @@ class Alerttype:
         """
         self._name = value
 
+    @property
+    def level(self):
+        """
+        get the alert type level
+        """
+        return self._level
+
+    @level.setter
+    def level(self, value):
+        """
+        modify the alert type level
+        """
+        self._level = value
+
     def create_dict(self):
         """
         create dict to save in db
@@ -83,6 +100,7 @@ class Alerttype:
         new_dict = {}
         new_dict["idAlerttype"] = self.idAlerttype
         new_dict["name"] = self.name
+        new_dict["level"] = self.level
 
         return new_dict
 

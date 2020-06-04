@@ -172,6 +172,9 @@ class Comunas:
         """
         verify if a comuna exists
         """
+        if idComuna == "100":
+            return True
+
         for item in cls.readAll().values():
             if item.get('idComuna') == idComuna:
                 return True
