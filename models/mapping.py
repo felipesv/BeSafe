@@ -5,6 +5,7 @@ Mapping class
 from models import storage
 from models.reports import Reports
 from models.alert_type import Alerttype
+from models.user import User
 from uuid import uuid4
 
 
@@ -21,6 +22,7 @@ class Mapping:
             1: alert type id
             2: latitude
             3: longitude
+            4: user id
         kwargs: create a object mapping with data from db
         """
         self._referDb = None
@@ -35,6 +37,7 @@ class Mapping:
             self._idAlerttype = str(args[1])
             self._latitude = float(args[2])
             self._longitude = float(args[3])
+            self._idUser = str(args[4])
 
     @classmethod
     def valid_args(cls, args):
@@ -44,8 +47,9 @@ class Mapping:
             1: alert type id
             2: latitude
             3: longitude
+            4: user id
         """
-        if len(args) != 4:
+        if len(args) != 5:
             raise SyntaxError("Incorrect number of attributes")
         if len(args[0]) == 0 or not Reports.validReport(args[0]):
             raise ValueError("Empty or not a valid report id")
@@ -55,6 +59,8 @@ class Mapping:
             raise ValueError("Latitude needs to be a float data type")
         if type(args[3]) is not float:
             raise ValueError("Longitude needs to be a float data type")
+        if len(args[4]) == 0 or not User.validUserId(args[4]):
+            raise ValueError("Empty or not a valid user id")
         return True
 
     @property
@@ -125,11 +131,28 @@ class Mapping:
         """
         get the mapping longitude
         """
-        return self._latitude
+        return self._longitude
 
     @longitude.setter
     def longitude(self, value):
+        """
+        modify the mapping longitude
+        """
         self._longitude = value
+
+    @property
+    def idUser(self):
+        """
+        get the mapping longitude
+        """
+        return self._idUser
+
+    @idUser.setter
+    def idUser(self, value):
+        """
+        modify the user id
+        """
+        self._idUser = value
 
     def create_dict(self):
         """
