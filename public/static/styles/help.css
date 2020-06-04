@@ -1,0 +1,36 @@
+.img-part {
+  background-image: url('../images/back_footer.jpg');
+  background-repeat: no-repeat;
+  background-size:cover;
+  z-index: -1;
+}
+.img-part, .help-container {
+  height: calc(100vh - 50px);
+}
+.text-part {
+  background-color: #FFF;
+}
+.help-container {
+  width: 98.8vw;
+}
+.line {
+  content: url('../images/linea_contacto.png');
+  height: 100%;
+  width: 30%;
+  margin-top: 1rem;
+}
+.twit-icon {
+  content: url('../images/twitter.svg');
+}
+.insta-icon {
+  content: url('../images/instagram.svg');
+}
+.face-icon {
+  content: url('../images/facebook.svg');
+}
+.twit-icon, .insta-icon, .face-icon {
+  width: 5%;
+}
+.social {
+  justify-content: space-around;
+}

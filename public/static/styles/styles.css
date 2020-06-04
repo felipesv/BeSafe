@@ -6,22 +6,73 @@
  */
 /* Reset styles browser */
 * {
-    font-family: 'Roboto', sans-serif;
-}
-body {
+    font-family: 'Anton', sans-serif;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+ul{
+    list-style: none;
+}
+a {
+    color: #000000;
+    cursor: default;
+    text-decoration: none;
+}
+a:hover {
+    cursor: pointer;
+    text-decoration: none;
+    color: #FFF;
+}
 /* Reset styles browser end */
 /* Navbar styles */
-.navbar {
+.navb {
     display: flex;
     align-items: center;
     height: 50px;
-    background-color: teal;
-    box-shadow: 0 2px 5px gray;
+    background-color: hsl(286, 95%, 32%);
+    box-shadow: 0 2px 5px hsl(286, 100%, 24%);
     width: 100%;
+}
+.logo-header {
+    content: url('../images/logo_header.png');
+    width: 6%;
+    margin-right: 3rem;
+}
+.menu-list {
+    color: #FFF;
+    flex: 1;
+    margin-left: 3rem;
+}
+.index-bg {
+    background-image: url('../images/back_index.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+}
+.about {
+    background-image: url('../images/back_about.jpg');
+    background-size: cover;
+    background-position-y: -8rem;
+    background-repeat: no-repeat;
+    height: calc(100vh - 50px);
+}
+.logo {
+    content: url('../images/Logo_index.png');
+    width: 50%;
+}
+.marg {
+    margin-left: 9rem;
+    padding-top: 1rem;
+}
+.download {
+    content: url('../images/google-play-badge.svg');
+    width: 20%;
+    align-self: center;
+    margin-top: -2rem;
+    margin-left: 9rem;
 }
 .logo, .account {
     text-decoration: none;
@@ -32,7 +83,7 @@ body {
     flex-grow: 1;
 }
 .account {
-    flex-grow: 0.1;
+    flex-grow: 0.06;
 }
 /* Navbar styles */
 /* Main styles */
@@ -54,3 +105,55 @@ body {
     height: 50px;
 }
 /* Styles for footer end */
+.red {
+    color: #F00;
+}
+.Short {  
+    width: 100%;  
+    background-color: #dc3545;
+    margin-top: 5px;
+    height: 3px;  
+    color: #dc3545;  
+    font-weight: 500;  
+    font-size: 12px;  
+}  
+.Weak {  
+    width: 100%;  
+    background-color: #ffc107;  
+    margin-top: 5px;  
+    height: 3px;  
+    color: #ffc107;  
+    font-weight: 500;  
+    font-size: 12px;  
+}  
+.Good {  
+    width: 100%;  
+    background-color: #28a745;  
+    margin-top: 5px;  
+    height: 3px;  
+    color: #28a745;  
+    font-weight: 500;  
+    font-size: 12px;  
+}  
+.Strong {  
+    width: 100%;  
+    background-color: #d39e00;  
+    margin-top: 5px;  
+    height: 3px;  
+    color: #d39e00;  
+    font-weight: 500;  
+    font-size: 12px;  
+}
+
+/*=================================
+=            index nav            =
+===================================*/
+.nav-font {
+    font-size: 3.5rem;
+    color: #FFF;
+    margin-left: 2rem;
+    align-self: center;
+}
+
+/*=====  End of index nav  ======*/
+
