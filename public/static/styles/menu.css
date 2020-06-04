@@ -1,0 +1,26 @@
+.menu {
+  background-color: hsl(178, 53%, 60%);
+  text-align: center;
+  margin-left: -100vw;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+}
+.list-menu {
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+.close {
+  content: url('../images/close.svg');
+  opacity: 1;
+  filter: invert(1);
+  margin-top: .7rem;
+  margin-right: 1.8rem;
+  width: 2%;
+}
+.menu .list-menu:hover {
+  background-color: hsl(0, 0%, 85%);
+}
+.menu .list-menu:hover .list-hover {
+  color: hsl(178, 53%, 60%);
+}
