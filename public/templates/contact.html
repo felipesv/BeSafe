@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/contact.css') }}?{{ cache }}">
+{% endblock head %}
+{% block content %}
+  <h1 class="text-center">¿QUIERES COMPARTIR ALGO CON NOSOTROS?</h1>
+  <div class="contact-container text-center">
+    <form action="{{ url_for('help_form') }}" method="POST">
+      <p>Hola mi nombre es <input type="text" placeholder="Tu nombre" name="name" id="name">,</p>
+      <p>soy de <input type="text" name="city" id="city" placeholder="Tu ciudad"> y </p>
+      <p>mi correo electrónico es <input type="text" name="email" id="email" placeholder="Tu Email"></p>
+      <p>Mi mensaje para ustedes es:</p>
+      <input type="textarea" name="message" id="message" placeholder="Tu mensaje">
+      <button type="submit" class="d-block mx-auto mt-4">Enviar</button>
+    </form>
+  </div>
+{% endblock content %}

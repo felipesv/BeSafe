@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/help.css') }}?{{ cache }}">
+{% endblock head %}
+{% block content %}
+  <div class="d-flex align-items-center help-container">
+    <div class="col-md-3 col-12 text-part d-flex flex-column">
+      <ul>
+        <li><a href="">TÉRMINOS Y CONDICIONES</a></li>
+        <li><a href="">POLÍTICAS Y PRIVACIDAD</a></li>
+        <li><a href="">MAPA DEL SITIO</a></li>
+      </ul>
+    </div>
+    <div class="col-md-9 col-12 img-part d-flex align-items-center">
+      <div class="help col-12 col-md-6">
+        <div class="letter"></div>
+        <p>Contacto</p>
+        <p>info@besafe.com</p>
+        <p>Diseñado y desarrollado por BeSafe 2020 &copy Todos los derechos reservados</p>
+      </div>
+      <div class="social d-flex col-12 col-md-6">
+        <p>Social</p>
+        <div class="line"></div>
+        <div class="twit-icon"></div>
+        <div class="insta-icon"></div>
+        <div class="face-icon"></div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
