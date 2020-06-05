@@ -1,4 +1,23 @@
 {% extends 'layout.html' %}
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/filters.css') }}?{{ cache }}">
+{% endblock head %}
 {% block content %}
-  
+  <div class="filter d-flex flex-column">
+    <p>FILTRAR POR</p>
+    <button class="cian">VIOLENCIA CON RIESGO DE VIDA</button>
+    <button class="magen">Abuso sexual</button>
+    <button class="magen">Agresión fisica</button>
+    <button class="magen">Agresión autoinfligida</button>
+    <button class="magen">Agresión colectiva</button>
+    <button class="cian">VIOLENCIA FISICA O PSICOLÓGICA</button>
+    <button class="magen">Acoso sexual</button>
+    <button class="magen">Agresión psicológica</button>
+    <button class="magen">Discriminación</button>
+    <button class="magen">Acoso callejero</button>
+    <button class="magen">Abuso de autoridad</button>
+    <button class="magen">Bullying</button>
+    <button class="cian">LIMPIAR FILTROS</button>
+  </div>
 {% endblock content %}
