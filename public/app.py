@@ -3,6 +3,7 @@
 '''
 from flask import Flask, render_template, flash, redirect, request, url_for,\
     jsonify, abort
+from flask_bcrypt import Bcrypt
 from uuid import uuid4
 from models.user import User
 from models.role import Role
@@ -12,6 +13,7 @@ import json
 
 app = Flask(__name__)
 app.config.from_object('public.config')
+bcrypt = Bcrypt(app)
 
 
 @app.route('/')
@@ -58,11 +60,22 @@ def email_validation():
 
 @app.route('/test', methods=['GET', 'POST'])
 def method_name():
-    print(request.form)
-    form = SignUp(request.form)
-    if request.method == 'POST' and form.validate():
-        return render_template('test.html', form=form)
-    return render_template('test_signUp.html', form=form)
+    signUp = SignUp(request.form)
+    if request.method == 'POST' and signUp.validate():
+        role = Role.readAll()
+        idRole = ''.join([rol['idRol'] for rol in role.values() 
+                          if rol['description'] == 'Usuario'])
+        password = bcrypt.generate_password_hash(request.form['password'])
+        data = [
+            idRole,
+            request.form['name'],
+            request.form['email'],
+            password
+        ]
+        user = User(*data)
+        user.write()
+        return redirect(request.form['route'])
+    return render_template('test.html', signUp=signUp)
 
 
 @app.route('/reports', methods=['GET', 'POST'])
@@ -110,6 +123,9 @@ def help_form():
    pass
 
 
+
+
+
 @app.errorhandler(404)
 def page_404(e):
     ''' 404 error
@@ -118,4 +134,4 @@ def page_404(e):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
