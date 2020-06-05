@@ -1,9 +1,12 @@
-<div class="container" style="margin-top: 10px;">
-  <form action="/test" method="POST">
-    {{ form.name.label }} {{ form.name }}
-    {{ form.email.label }} {{ form.email }}
-    {{ form.password.label }} {{ form.password }}
-    {{ form.confirm.label }} {{ form.confirm }}
-    {{ form.submit }}
+<div class="form-container">
+  <p>Registrate en BeSafe para poder generar reportes</p>
+  <form action="/test" method="POST" class="d-flex flex-column form">
+    {{ signUp.name.label }} {{ signUp.name(placeholder="name") }}
+    {{ signUp.email.label }} {{ signUp.email }}
+    {{ signUp.password.label }} {{ signUp.password }}
+    <p id="check_pass"></p>
+    {{ signUp.confirm.label }} {{ signUp.confirm }}
+    {{ signUp.route(value=url_for(request.endpoint)) }}
+    {{ signUp.submit }}
   </form>
 </div>
