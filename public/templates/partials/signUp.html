@@ -2,12 +2,13 @@
   <p>Registrate en BeSafe para poder generar reportes</p>
   <form action="/sign_up" method="POST" class="d-flex flex-column form">
     <p>BeSafe</p>
-    <p>Regístrate ahora!</p>
-    <input type="text" placeholder="username" name="username" id="username" required />
-    <input type="text" placeholder="email" name="email" id="email" onchange="emailValidation()" required />
-    <input type="password" placeholder="password" name="password" id="password" required />
+    {{ signUp.name.label }} {{ signUp.name(placeholder="name") }}
+    {{ signUp.email.label }} {{ signUp.email(placeholder="email") }}
+    {{ signUp.password.label }} {{ signUp.password(placeholder="password") }}
     <p id="check_pass"></p>
-    <input type="password" placeholder="password again" name="verify" id="verify-password" required />
-    <button id="signup" type="submit">REGISTRATE</button>
+    {{ signUp.confirm.label }} {{ signUp.confirm }}
+    {{ signUp.route(value=url_for(request.endpoint)) }}
+    {{ signUp.submit }}
+    {{ signUp.error }}
   </form>
 </div>

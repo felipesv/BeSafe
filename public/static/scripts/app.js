@@ -1,26 +1,27 @@
-function emailValidation() {
-  $.ajax({
-    type: 'POST',
-    url: '/emails',
-    data: '{}',
-    dataType: 'json',
-    contentType: 'application/json',
-    success: function (emails) {
-      for (const email of emails) {
-        if (email === $('#email').val()) {
-          $('#email').css('border-color', 'red');
-          $('#email').after('<p>email ya usado</p>');
-        } else {
-          $('#email + p').remove();
-          $('#email').css('border-color', 'initial');
-        }
-      }
-    }
-  });
-}
 $(document).ready(function () {
 
-  $('#password').keyup(function () { 
+  $('#email').change(function () {
+    $.ajax({
+      type: 'POST',
+      url: '/emails',
+      data: '{}',
+      dataType: 'json',
+      contentType: 'application/json',
+      success: function (emails) {
+        for (const email of emails) {
+          if (email === $('#email').val()) {
+            $('#email').css('border-color', 'red');
+            $('#email').after('<p>email ya usado</p>');
+          } else {
+            $('#email + p').remove();
+            $('#email').css('border-color', 'initial');
+          }
+        }
+      }
+    });
+  });
+
+  $('#password').keyup(function () {
     $('#check_pass').html(checkStrengthPass($('#password').val()));
   });
 
@@ -63,18 +64,18 @@ $(document).ready(function () {
     }
   }
 
-  $('#verify-password').change(function () {
+  $('#confirm').change(function () {
     const pass1 = $('#password').val();
-    const pass2 = $('#verify-password').val();
-    $('#verify-password + p').remove();
-    $('#verify-password').css('border-color', 'initial');
+    const pass2 = $('#confirm').val();
+    $('#confirm + p').remove();
+    $('#confirm').css('border-color', 'initial');
     if (pass1 !== pass2) {
-      $('#verify-password').css('border-color', '#F00');
+      $('#confirm').css('border-color', '#F00');
       $('#password').css('border-color', '#F00');
-      $('#verify-password').after('<p class="red">No coinciden las contraseñas</p>');
+      $('#confirm').after('<p class="red">No coinciden las contraseñas</p>');
     } else {
-      $('#verify-password + p').remove();
-      $('#verify-password').css('border-color', 'initial');
+      $('#confirm + p').remove();
+      $('#confirm').css('border-color', 'initial');
       $('#password').css('border-color', 'initial');
     }
   });

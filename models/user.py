@@ -50,7 +50,7 @@ class User:
             raise ValueError("Empty or not a valid report id")
         if len(args[1]) == 0:
             raise ValueError("Empty name")
-        if len(args[2]) == 0 or User.validUser(args[2]):
+        if len(args[2]) == 0 or User.getUser(args[2]):
             raise ValueError("Empty or email exist")
         if len(args[3]) == 0:
             raise ValueError("Empty password")
@@ -156,7 +156,7 @@ class User:
             return {}
         return data
 
-    def read(self):
+    def read(self, key):
         """
         get all the information from db by user key
         """
@@ -191,11 +191,11 @@ class User:
         self.userDb.delete()
 
     @classmethod
-    def validUser(cls, email):
+    def getUser(cls, email):
         """
         verify if a user exists
         """
         for item in cls.readAll().values():
             if item.get('email') == email:
-                return True
+                return item
         return False

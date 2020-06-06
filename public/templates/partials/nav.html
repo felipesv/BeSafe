@@ -1,7 +1,12 @@
 <nav class="navb">
-  <a class="menu-list" href="javascript:void(0)">MENU</a>
+  <a class="menu-list" href="#">MENU</a>
   <a class=account href="#gen_report">GENERAR REPORTE DE VIOLENCIA</a>
+  {% if 'user' not in session %}
   <a class=account href="#login">INICIAR SESIÓN</a>
   <a class=account href="#signup">REGISTRO</a>
+  {% else %}
+  <a class=account href="{{ url_for('logout') }}">CERRAR SESIÓN</a>
+  <a class=account href="#">{{ session['name'] }}</a>
+  {% endif %}
   <a class=logo-header href="{{ url_for('index') }}"></a>
 </nav>
