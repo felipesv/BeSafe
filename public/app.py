@@ -6,6 +6,8 @@ from flask import Flask, render_template, flash, redirect, request, url_for,\
 from uuid import uuid4
 from models.user import User
 from models.role import Role
+from models.alert_type import Alerttype
+from models.stadistics import Stadistics
 from public.forms import SignUp, LogIn
 import json
 
@@ -78,7 +80,8 @@ def map():
     signUp = SignUp(request.form)
     logIn = LogIn(request.form)
     cache = str(uuid4())
-    return render_template('map.html', signUp=signUp, logIn=logIn, cache=cache)
+    dataAlertType = Alerttype.readAll()
+    return render_template('map.html', signUp=signUp, logIn=logIn, cache=cache, dataAlertType=dataAlertType)
 
 
 @app.route('/about', methods=['GET', 'POST'])
@@ -108,6 +111,10 @@ def help():
 @app.route('/help_form', methods=['GET', 'POST'])
 def help_form():
    pass
+
+@app.route('/stadistic', methods=['POST'])
+def stadistic_comuna():
+    return jsonify(Stadistics.stadisticsByComuna(request.form.get("idComuna")))
 
 
 @app.errorhandler(404)

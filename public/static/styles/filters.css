@@ -1,0 +1,34 @@
+.filter {
+  background-color: hsl(286, 95%, 32%);
+  text-align: center;
+  margin-top: 1.4rem;
+  margin-left: .9rem;
+  height: calc(100vh - 90px);
+  width: 13rem;
+  z-index: 1;
+}
+.filter p {
+  font-size: .9rem;
+  color: #FFF;
+  margin: .3rem 0;
+}
+.filter button {
+  border: none;
+  border-top: 1px solid hsl(286, 95%, 32%);
+  color: #FFF;
+  padding: 0.55rem 0;
+  font-size: .7rem;
+}
+.filter > * {
+  margin: 0 1rem;
+}
+.filter p:first-child {
+  margin-top: 0.4rem;
+}
+.cian {
+  background-color: hsl(178, 53%, 60%);
+  border-radius: .2rem;
+}
+.magen {
+  background-color: hsl(295, 79%, 36%);
+}
