@@ -96,40 +96,50 @@ $(document).ready(function () {
 
     // function to add market on the map
     function markerMapping() {
-      /*let icon1 = L.Icon.extend({
-        options: {
-          shadowUrl: 'http://leafletjs.com/examples/custom-icons/leaf-shadow.png',
-          iconSize:     [38, 95],
+      let iconClass = L.Icon.extend({
+        options: {          
+          iconSize:     [25, 41],
           shadowSize:   [50, 64],
-          iconAnchor:   [22, 94],
+          iconAnchor:   [12, 41],
           shadowAnchor: [4, 62],
           popupAnchor:  [-3, -76]
         }
       });
-
-      ponit1 = new icon1({iconUrl: 'http://leafletjs.com/examples/custom-icons/leaf-green.png'});
-      L.marker([3.443633, -76.520634], {icon: ponit1}).addTo(besafeMap);*/
 
       deleteMarket();
       markerPoints = {};
 
       mappingPoints.forEach(point => {
         let idAlert = point.idAlerttype;
-        let message = "Riesgo de vida"
-        let marker;
+        let message, marker, icon;
+
+        switch(alerttypes[idAlert].level) {
+          case 0:
+            icon = new iconClass({iconUrl: 'http://besafeapp.freevar.com/files/azulito.png'});
+            message = "Otro";
+            break;
+          case 1:
+            icon = new iconClass({iconUrl: 'http://besafeapp.freevar.com/files/rojito.png'});
+            message = "Riesgo de vida";
+            break;
+          case 2:
+            icon = new iconClass({iconUrl: 'http://besafeapp.freevar.com/files/naranjita.png'});
+            message = "Riesgo físico o psicológico";
+            break
+        }
 
         if (Object.keys(filters).length != 0) {
           if (filters.hasOwnProperty(idAlert)) {
-            marker = L.marker([point.latitude, point.longitude]).addTo(besafeMap);
+            marker = L.marker(
+              [point.latitude, point.longitude],
+              {icon: icon}
+            ).addTo(besafeMap);
           }
         } else {
-          marker = L.marker([point.latitude, point.longitude]).addTo(besafeMap);          
-        }
-
-        if (alerttypes[idAlert].level == 2) {
-          message = "Riesgo físico o psicológico"
-        } else if (alerttypes[idAlert].level == 0) {
-          message = "Otro"
+          marker = L.marker(
+            [point.latitude, point.longitude],
+            {icon: icon}
+          ).addTo(besafeMap);
         }
 
         if (typeof marker !== 'undefined') {
