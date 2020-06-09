@@ -1,3 +1,91 @@
 {% extends 'layout.html' %}
+{% block head %}
+  {{ super() }}
+  <!--FIREBASE-->
+  <script defer src="https://www.gstatic.com/firebasejs/7.14.6/firebase-app.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/7.14.6/firebase-database.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/7.14.6/firebase-auth.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/7.14.6/firebase-firestore.js"></script>
+  <!--LEAFLET-->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+  <!--GOOGLECHARTS-->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <!--OWN STYLES-->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/filters.css') }}?{{ cache }}">
+  <!--OWN JS-->
+  <script defer src="{{ url_for('static', filename='scripts/handleMaps.js') }}?{{ cache }}"></script>
+{% endblock head %}
 {% block content %}
+  <div class="filter d-flex flex-column">
+    <p>FILTRAR POR</p>
+    <button class="cian">VIOLENCIA CON RIESGO DE VIDA</button>
+    {% for alerttype in dataAlertType.values()|sort(attribute='name') %}
+      {% if alerttype.level == 1 %}
+        <button class="magen btnFiltro" attr-id="{{ alerttype.idAlerttype }}" attr-ck="">{{ alerttype.name }}</button>
+      {% endif %}
+    {% endfor %}
+    <button class="cian">VIOLENCIA FISICA O PSICOLÓGICA</button>
+    {% for alerttype in dataAlertType.values()|sort(attribute='name') %}
+      {% if alerttype.level == 2 %}
+        <button class="magen btnFiltro" attr-id="{{ alerttype.idAlerttype }}" attr-ck="">{{ alerttype.name }}</button>
+      {% endif %}
+    {% endfor %}
+    <button class="cian">OTRO TIPO DE VIOLENCIA</button>
+    {% for alerttype in dataAlertType.values()|sort(attribute='name') %}
+      {% if alerttype.level == 0 %}
+        <button class="magen btnFiltro" attr-id="{{ alerttype.idAlerttype }}" attr-ck="">{{ alerttype.name }}</button>
+      {% endif %}
+    {% endfor %}
+    <button class="cian btnClearFilter">LIMPIAR FILTROS</button>
+    <button class="magen btnComuna" attr-ck="">MOSTRAR COMUNAS</button>
+  </div>
+  <!--DIS WHERE MAP IS DISPLAY-->
+  <div style="height: 100%; width: 100%; position: absolute; margin-top: 100px;">
+    <div id="mapSafe" style="height: 100%; width: 100%;"></div>
+  </div>
+  <!--MODAL WHEN CLICK IN COMUNA-->
+  <div class="modal" tabindex="-1" role="dialog" id="comunaDetails">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="titleModalPolygon">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div id="stadistics">
+            <h6 id="totalCases">Total casos:</h6>
+            <h6 id="totalComplaint">Total casos:</h6>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="neighborhoods-tab" data-toggle="tab" href="#neighborhoods" role="tab" aria-controls="home" aria-selected="true">Barrios</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="stages-tab" data-toggle="tab" href="#stages" role="tab" aria-controls="profile" aria-selected="false">Escenarios</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="collective-tab" data-toggle="tab" href="#collective" role="tab" aria-controls="contact" aria-selected="false">Colectivo</a>
+              </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="neighborhoods" role="tabpanel" aria-labelledby="neighborhoods-tab">
+                <div id="chartNeighborhood"></div>
+              </div>
+              <div class="tab-pane fade" id="stages" role="stages" aria-labelledby="stages-tab">
+                <div id="chartStages"></div>
+              </div>
+              <div class="tab-pane fade" id="collective" role="collective" aria-labelledby="collective-tab">
+                <div id="chartCollective"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock content %}
