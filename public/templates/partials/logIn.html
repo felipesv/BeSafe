@@ -1,0 +1,21 @@
+<div class="model fade" id="login" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dimiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Inicia sesión para poder generar reportes</p>
+        <form action="/login" method="POST" class="d-flex flex-column form">
+          <p>BeSafe</p>
+          <p>Inicia sesión</p>
+          {{ logIn.email.label }} {{ logIn.email(value=logIn.email.data) }}
+          {{ logIn.password.label }} {{ logIn.password }}
+          {{ logIn.route(value=url_for(request.endpoint)) }}
+          {{ logIn.submit }}
+          {{ logIn.error }}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
