@@ -4,6 +4,8 @@ Mapping class
 """
 from models import storage
 from models.reports import Reports
+from models.alert_type import Alerttype
+from models.user import User
 from uuid import uuid4
 
 
@@ -17,8 +19,10 @@ class Mapping:
         """
         args: create mapping type object
             0: report id
-            1: latitude
-            2: longitude
+            1: alert type id
+            2: latitude
+            3: longitude
+            4: user id
         kwargs: create a object mapping with data from db
         """
         self._referDb = None
@@ -30,25 +34,33 @@ class Mapping:
         elif Mapping.valid_args(args):
             self._idMapping = str(uuid4())
             self._idReport = str(args[0])
-            self._latitude = float(args[1])
-            self._longitude = float(args[2])
+            self._idAlerttype = str(args[1])
+            self._latitude = float(args[2])
+            self._longitude = float(args[3])
+            self._idUser = str(args[4])
 
     @classmethod
     def valid_args(cls, args):
         """
         verify if all the values are correct
             0: report id
-            1: latitude
-            2: longitude
+            1: alert type id
+            2: latitude
+            3: longitude
+            4: user id
         """
-        if len(args) != 3:
+        if len(args) != 5:
             raise SyntaxError("Incorrect number of attributes")
         if len(args[0]) == 0 or not Reports.validReport(args[0]):
             raise ValueError("Empty or not a valid report id")
-        if type(args[1]) is not float:
-            raise ValueError("Latitude needs to be a float data type")
+        if len(args[1]) == 0 or not Alerttype.validAlerttype(args[1]):
+            raise ValueError("Empty or not a valid alert type id")
         if type(args[2]) is not float:
+            raise ValueError("Latitude needs to be a float data type")
+        if type(args[3]) is not float:
             raise ValueError("Longitude needs to be a float data type")
+        if len(args[4]) == 0 or not User.validUserId(args[4]):
+            raise ValueError("Empty or not a valid user id")
         return True
 
     @property
@@ -87,6 +99,20 @@ class Mapping:
         self._idReport = value
 
     @property
+    def idAlerttype(self):
+        """
+        get alert type id
+        """
+        return self._idAlerttype
+
+    @idAlerttype.setter
+    def idAlerttype(self, value):
+        """
+        modify alert type id
+        """
+        self._idAlerttype = value
+
+    @property
     def latitude(self):
         """
         get the mapping latitude
@@ -105,11 +131,28 @@ class Mapping:
         """
         get the mapping longitude
         """
-        return self._latitude
+        return self._longitude
 
     @longitude.setter
     def longitude(self, value):
+        """
+        modify the mapping longitude
+        """
         self._longitude = value
+
+    @property
+    def idUser(self):
+        """
+        get the mapping longitude
+        """
+        return self._idUser
+
+    @idUser.setter
+    def idUser(self, value):
+        """
+        modify the user id
+        """
+        self._idUser = value
 
     def create_dict(self):
         """
@@ -118,6 +161,7 @@ class Mapping:
         new_dict = {}
         new_dict["idMapping"] = self.idMapping
         new_dict["idReport"] = self.idReport
+        new_dict["idAlerttype"] = self.idAlerttype
         new_dict["latitude"] = self.latitude
         new_dict["longitude"] = self.longitude
 

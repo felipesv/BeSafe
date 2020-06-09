@@ -2,6 +2,7 @@
 """
 Neighborhood class
 """
+from models.comunas import Comunas
 from models import storage
 from uuid import uuid4
 
@@ -15,7 +16,8 @@ class Neighborhood:
     def __init__(self, *args, **kwargs):
         """
         args: create neighborhood class object
-            0: neighborhood name or description
+            0: comuna id
+            1: neighborhood name or description
         kwargs: create a object neighborhood with data from db
         """
         self._referDb = None
@@ -26,17 +28,21 @@ class Neighborhood:
 
         elif Neighborhood.valid_args(args):
             self._idNeighborhood = str(uuid4())
-            self._name = str(args[0])
+            self._idComuna = str(args[0])
+            self._name = str(args[1])
 
     @classmethod
     def valid_args(cls, args):
         """
         verify if all the values are correct
-            0: neighborhood name or description
+            0: comuna id
+            1: neighborhood name or description
         """
-        if len(args) != 1:
+        if len(args) != 2:
             raise SyntaxError("Incorrect number of attributes")
-        if len(args[0]) == 0:
+        if len(args[0]) == 0 or not Comunas.validComuna(args[0]):
+            raise ValueError("Empty or not valid comuna id")
+        if len(args[1]) == 0:
             raise ValueError("Empty name or descriprion")
         return True
 
@@ -62,6 +68,20 @@ class Neighborhood:
         return self._idNeighborhood
 
     @property
+    def idComuna(self):
+        """
+        get comuna id
+        """
+        return self._idComuna
+
+    @idComuna.setter
+    def idComuna(self, value):
+        """
+        modify comuna id
+        """
+        self._idComuna = value
+
+    @property
     def name(self):
         """
         get neighborhood name or description
@@ -81,6 +101,7 @@ class Neighborhood:
         """
         new_dict = {}
         new_dict["idNeighborhood"] = self.idNeighborhood
+        new_dict["idComuna"] = self._idComuna
         new_dict["name"] = self.name
 
         return new_dict

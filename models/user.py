@@ -199,3 +199,13 @@ class User:
             if item.get('email') == email:
                 return item
         return False
+
+    @classmethod
+    def validUserId(cls, idUser):
+        """
+        verify if a user exists by id
+        """
+        for item in cls.readAll().values():
+            if item.get('idUser') == idUser:
+                return True
+        return False

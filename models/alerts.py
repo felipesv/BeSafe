@@ -3,7 +3,6 @@
 Alert class
 """
 from models import storage
-from models.alert_type import Alerttype
 from models.notification import Notification
 from uuid import uuid4
 from datetime import datetime
@@ -19,8 +18,7 @@ class Alert:
         """
         args: create alert object
             0: alert type id
-            1: alert message
-            2: notification id
+            1: notification id
         kwargs: create an object alert with data from db
         """
         self._referDb = None
@@ -31,27 +29,23 @@ class Alert:
 
         elif Alert.valid_args(args):
             self._idAlert = str(uuid4())
-            self._idAlerttype = str(args[0])
-            self._message = str(args[1])
+            self._message = str(args[0])
             self._date = datetime.now().strftime("%m/%d/%Y")
             self._hour = datetime.now().strftime("%H:%M:%S")
-            self._idNotification = str(args[2])
+            self._idNotification = str(args[1])
 
     @classmethod
     def valid_args(cls, args):
         """
         verify if all the values are correct
             0: alert type id
-            1: alert message
-            2: notification id
+            1: notification id
         """
-        if len(args) != 3:
+        if len(args) != 2:
             raise SyntaxError("Incorrect number of attributes")
-        if len(args[0]) == 0 or not Alerttype.validAlerttype(args[0]):
-            raise ValueError("Empty or not a valid alert type id")
-        if len(args[1]) == 0:
+        if len(args[0]) == 0:
             raise ValueError("Empty name or description")
-        if len(args[2]) == 0 or not Notification.validNotification(args[2]):
+        if len(args[1]) == 0 or not Notification.validNotification(args[1]):
             raise ValueError("Empty or not a valid notification id")
         return True
 
@@ -75,20 +69,6 @@ class Alert:
         get alert id
         """
         return self._idAlert
-
-    @property
-    def idAlerttype(self):
-        """
-        get alert type id
-        """
-        return self._idAlerttype
-
-    @idAlerttype.setter
-    def idAlerttype(self, value):
-        """
-        modify alert type id
-        """
-        self._idAlerttype = value
 
     @property
     def message(self):
@@ -138,7 +118,6 @@ class Alert:
         """
         new_dict = {}
         new_dict["idAlert"] = self.idAlert
-        new_dict["idAlerttype"] = self.idAlerttype
         new_dict["message"] = self.message
         new_dict["date"] = self.date
         new_dict["hour"] = self.hour
