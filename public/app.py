@@ -2,7 +2,8 @@
 ''' Run app
 '''
 from flask import Flask, render_template, flash, redirect, request, url_for,\
-    jsonify, abort
+    jsonify, abort, session
+from flask_bcrypt import Bcrypt
 from uuid import uuid4
 from models.user import User
 from models.role import Role
@@ -14,9 +15,12 @@ import json
 
 app = Flask(__name__)
 app.config.from_object('public.config')
+app.url_map.strict_slashes = False
+bcrypt = Bcrypt(app)
 
 
 @app.route('/')
+@app.route('/index')
 def index():
     ''' render index.html '''
     cache = str(uuid4())
@@ -29,21 +33,26 @@ def index():
 def sign_up():
     ''' 
     '''
-    if request.method == 'POST':
-        if request.form['password'] == request.form['verify']:
-            role = Role.readAll()
-            idRole = ''.join([rol['idRol'] for rol in role.values()])
-            data = [
-                idRole,
-                request.form['username'],
-                request.form['email'],
-                request.form['password']
-            ]
-            user = User(*data)
-            user.write()
-        else:
-            flash('The password do not equal')
-    return redirect(url_for('index'))
+    signUp = SignUp(request.form)
+    if request.method == 'POST' and signUp.validate():
+        role = Role.readAll()
+        idRole = ''.join([rol['idRol'] for rol in role.values() 
+                          if rol['description'] == 'Usuario'])
+        password = bcrypt.generate_password_hash(request.form['password'], 10).decode('utf-8')
+        data = [
+            idRole,
+            request.form['name'],
+            request.form['email'],
+            password
+        ]
+        user = User(*data)
+        user.write()
+        return redirect(request.referrer)
+    # TODO: Handler errors
+    """ 
+    Implement here
+    """
+    return render_template('index.html', signUp=signUp)
 
 
 @app.route('/emails', methods=['POST', 'GET'])
@@ -58,13 +67,31 @@ def email_validation():
         return jsonify(emails)
 
 
-@app.route('/test', methods=['GET', 'POST'])
-def method_name():
-    print(request.form)
-    form = SignUp(request.form)
-    if request.method == 'POST' and form.validate():
-        return render_template('test.html', form=form)
-    return render_template('test_signUp.html', form=form)
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    login = LogIn(request.form)
+    if request.method == 'POST' and login.validate():
+        user = User.getUser(login.email.data)
+        print(user['password'])
+        print(request.form['password'])
+        print(bcrypt.generate_password_hash(request.form['password'], 10).decode('utf-8'))
+        confirm = bcrypt.check_password_hash(user['password'],\
+            request.form['password'])
+        if user == False or confirm == False:
+            flash('Email y/o contraseña invalidos')
+            # TODO: Handler errors
+            return redirect(request.referrer)
+        session['user'] = user['idUser']
+        session['name'] = user['name'].upper()
+    return redirect(request.referrer)
+
+
+@app.route('/logout', methods=['GET'])
+def logout():
+   if request.referrer == None:
+       return redirect(url_for('index'))
+   [session.pop(key) for key in list(session.keys())]
+   return redirect(request.referrer)
 
 
 @app.route('/reports', methods=['GET', 'POST'])
@@ -125,4 +152,4 @@ def page_404(e):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
