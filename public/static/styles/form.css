@@ -4,6 +4,7 @@
   border: 1px solid;
   min-height: calc((100vh - 50px) / 1.5);
   width: 30%;
+  z-index: 10;
 }
 .form-container > p {
   text-align: center;
@@ -26,4 +27,7 @@
   color: #FFF;
   background-color: hsl(178, 63%, 57%);
   padding: .4rem;
+}
+.modal-backdrop.show {
+  z-index: -1;
 }

@@ -82,4 +82,3 @@ $(document).ready(function () {
   $('.menu-list').click(() => $('#menu').animate({'margin-left': '0'}, 'slow'));
   $('.close').click(() => $('#menu').animate({'margin-left': '-=100vw'}, 'slow'));
 });
-
