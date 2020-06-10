@@ -8,6 +8,7 @@ from models.aggressor import Aggressor
 from models.collective_group import Collectivegroup
 from models.neighborhood import Neighborhood
 from models.stage import Stage
+from models.user import User
 from uuid import uuid4
 from datetime import datetime
 
@@ -28,6 +29,7 @@ class Reports:
             4: aggressor id
             5: complaint
             6: collective group id
+            7: user id
         kwargs: create a object role type with data from db
         """
         self._referDb = None
@@ -47,6 +49,7 @@ class Reports:
             self._idAggressor = str(args[4])
             self._complaint = str(args[5])
             self._idCollective = str(args[6])
+            self._idUser = str(args[7])
 
     @classmethod
     def valid_args(cls, args):
@@ -59,8 +62,9 @@ class Reports:
             4: aggressor id
             5: complaint
             6: collective group id
+            7: user id
         """
-        if len(args) != 7:
+        if len(args) != 8:
             raise SyntaxError("Incorrect number of attributes")
         if len(args[0]) == 0 or not Alert.validAlert(args[0]):
             raise ValueError("Empty or not a valid alert id")
@@ -76,6 +80,8 @@ class Reports:
             raise ValueError("Empty complaint")
         if len(args[6]) == 0 or not Collectivegroup.validCollective(args[6]):
             raise ValueError("Empty or not a valid collective group id")
+        if len(args[7]) == 0 or not User.validUserId(args[7]):
+            raise ValueError("Empty or not a valid user id")
         return True
 
     @property
@@ -205,6 +211,20 @@ class Reports:
         """
         self._idCollective = value
 
+    @property
+    def idUser(self):
+        """
+        get the user id
+        """
+        return self._idUser
+
+    @idUser.setter
+    def idUser(self, value):
+        """
+        get the user id
+        """
+        self._idUser = value
+
     def create_dict(self):
         """
         create dict to save in db
@@ -220,6 +240,7 @@ class Reports:
         new_dict['idAggressor'] = self.idAggressor
         new_dict['complaint'] = self.complaint
         new_dict['idCollective'] = self.idCollective
+        new_dict['idUser'] = self.idUser
 
         return new_dict
 
