@@ -11,6 +11,9 @@
     margin: 0;
     padding: 0;
 }
+body{
+    overflow-x: hidden;
+}
 ul{
     list-style: none;
 }
@@ -33,6 +36,8 @@ a:hover {
     background-color: hsl(286, 95%, 32%);
     box-shadow: 0 2px 5px hsl(286, 100%, 24%);
     width: 100%;
+    z-index: 2000;
+    position: fixed;
 }
 .logo-header {
     content: url('../images/logo_header.png');

@@ -1,11 +1,25 @@
+#mapSafe {
+  margin: 0 !important;
+  padding: 0 !important;
+  position: static !important;
+  height: 100%;
+  width: 100%;
+}
+.leaflet-control-zoom {
+  top: 100px;
+}
+
 .filter {
   background-color: hsl(286, 95%, 32%);
   text-align: center;
-  margin-top: 1.4rem;
-  margin-left: .9rem;
-  height: calc(100vh - 90px);
+  position: absolute;
   width: 13rem;
-  z-index: 1;
+  height: auto;
+  padding-bottom: 25px;
+  z-index: 1000;
+  top: 20%;
+  right: 0;
+  margin-right: 10px;
 }
 .filter p {
   font-size: .9rem;
@@ -16,8 +30,11 @@
   border: none;
   border-top: 1px solid hsl(286, 95%, 32%);
   color: #FFF;
-  padding: 0.55rem 0;
+  padding: 0.65rem 0;
   font-size: .7rem;
+}
+.filter  div {
+  margin: 0 !important; 
 }
 .filter > * {
   margin: 0 1rem;
@@ -31,4 +48,5 @@
 }
 .magen {
   background-color: hsl(295, 79%, 36%);
+  display: none;
 }
