@@ -17,6 +17,11 @@
   <script defer src="{{ url_for('static', filename='scripts/handleMaps.js') }}?{{ cache }}"></script>
 {% endblock head %}
 {% block content %}
+ <!--DIV WHERE MAP IS DISPLAY-->
+ <div style="height: 100%; width: 100%; position: absolute;">
+  <div id="mapSafe"></div>
+ </div>
+
   <div class="filter d-flex flex-column">
     <p>FILTRAR POR</p>
     <button class="cian">VIOLENCIA CON RIESGO DE VIDA</button>
@@ -39,10 +44,6 @@
     {% endfor %}
     <button class="cian btnClearFilter">LIMPIAR FILTROS</button>
     <button class="magen btnComuna" attr-ck="">MOSTRAR COMUNAS</button>
-  </div>
-  <!--DIS WHERE MAP IS DISPLAY-->
-  <div style="height: 100%; width: 100%; position: absolute; margin-top: 100px;">
-    <div id="mapSafe" style="height: 100%; width: 100%;"></div>
   </div>
   <!--MODAL WHEN CLICK IN COMUNA-->
   <div class="modal" tabindex="-1" role="dialog" id="comunaDetails">
