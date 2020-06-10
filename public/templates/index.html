@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <!-- My styles -->
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}?{{ cache }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/form.css') }}?{{ cache }}">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
   <!-- JS, Popper.js, and jQuery -->
@@ -17,22 +18,30 @@
   <script src="{{ url_for('static', filename='scripts/app.js')}}?{{ cache }}"></script>
   <title>Index</title>
 </head>
-<body class="index-bg row align-items-center">
-  <aside class="col-12 col-md-6 d-flex align-content-center">
-    <nav class="">
-      <ul>
-        <li><a class="nav-font" href="{{ url_for('reports') }}">GENERAR REPORTE</a></li>
-        <li><a class="nav-font" href="{{ url_for('map') }}">MAPA VIOLENCIA</a></li>
-        <li><a class="nav-font" href="{{ url_for('about') }}">ACERCA DE</a></li>
-        <li><a class="nav-font" href="{{ url_for('contact') }}">CONTACTO</a></li>
-        <li><a class="nav-font" href="{{ url_for('help') }}">AYUDA</a></li>
-      </ul>
-    </nav>
-  </aside>
-  <main class="col-12 col-md-6 d-flex flex-column">
-    <div class="logo align-self-center"></div>
-    <p class="text-white marg text-center">Descarga la alerta de BeSafe gratis</p>
-    <div class="download"></div>
-  </main>
+<body class="index-bg">
+  {% include 'partials/logIn.html' %}
+    {% include 'partials/signUp.html' %}
+  <div class="row align-items-center" style="z-index: -2;">
+    <aside class="col-12 col-md-6 d-flex align-content-center">
+      <nav class="">
+        <ul>
+          {% if 'user' not in session %}
+          <li><a class="nav-font" data-toggle="modal" href="#login">GENERAR REPORTE</a></li>
+          {% else %}
+          <li><a class="nav-font" href="{{ url_for('reports') }}">GENERAR REPORTE</a></li>
+          {% endif %}
+          <li><a class="nav-font" href="{{ url_for('map') }}">MAPA VIOLENCIA</a></li>
+          <li><a class="nav-font" href="{{ url_for('about') }}">ACERCA DE</a></li>
+          <li><a class="nav-font" href="{{ url_for('contact') }}">CONTACTO</a></li>
+          <li><a class="nav-font" href="{{ url_for('help') }}">AYUDA</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <main class="col-12 col-md-6 d-flex flex-column">
+      <div class="logo align-self-center"></div>
+      <p class="text-white marg text-center">Descarga la alerta de BeSafe gratis</p>
+      <div class="download"></div>
+    </main>
+  </div>
 </body>
 </html>
