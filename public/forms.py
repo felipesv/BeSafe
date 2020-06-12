@@ -2,6 +2,7 @@
 ''' Validation Forms '''
 from wtforms import *
 from wtforms.validators import *
+from wtforms.widgets import TextArea
 import email_validator
 
 
@@ -27,3 +28,19 @@ class LogIn(Form):
     password = PasswordField('Password', [Required()])
     route = HiddenField('route')
     submit = SubmitField('Iniciar sesión')
+
+
+class Report(Form):
+    """Report
+    This clas is the report form
+    """
+    alertType = HiddenField('Tipo de violencia', [Required()], id='typeAlertRpt')
+    aggressor = HiddenField('Agresor', [Required()], id='typeAggressorRpt')
+    collective = HiddenField('Grupo collectivo', [Required()], id='collectiveGroupRpt')
+    stage = HiddenField('Escenario', [Required()], id='stagesRpt')
+    neighborhood = HiddenField('Barrio', [Required()], id='neighborhoodRpt')
+    complaint = HiddenField('Denuncia', [Required()], id='complaintRpt')
+    description = HiddenField('Description', [Required()], id='descriptionRpt', widget=TextArea())
+    latitude = HiddenField('Latitude', [Required()], id='latitudeRpt')
+    longitude = HiddenField('Longitude', [Required()], id='longitudeRpt')
+    submit = SubmitField('Generar', id='createReportRpt')

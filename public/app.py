@@ -9,7 +9,15 @@ from models.user import User
 from models.role import Role
 from models.alert_type import Alerttype
 from models.stadistics import Stadistics
-from public.forms import SignUp, LogIn
+from models.aggressor import Aggressor
+from models.collective_group import Collectivegroup
+from models.neighborhood import Neighborhood
+from models.notification import Notification
+from models.alerts import Alert
+from models.stage import Stage
+from models.reports import Reports
+from models.mapping import Mapping
+from public.forms import SignUp, LogIn, Report
 import json
 
 
@@ -99,8 +107,50 @@ def logout():
 def reports():
     signUp = SignUp(request.form)
     logIn = LogIn(request.form)
+    report = Report(request.form)
     cache = str(uuid4())
-    return render_template('reports.html', signUp=signUp, logIn=logIn, cache=cache)
+    violences = Alerttype.readAll()
+    aggressors = Aggressor.readAll()
+    collectives = Collectivegroup.readAll()
+    stages = Stage.readAll()
+    message=request.args.get('message')
+    return render_template('reports.html', signUp=signUp, logIn=logIn, report=report, cache=cache,
+    violences=violences, aggressors=aggressors, collectives=collectives, stages=stages,
+    message=message)
+
+
+@app.route('/create_report', methods=['POST'])
+def create_report():
+    userid = '65c7158a-525f-4f3a-a5de-61056180b3f6'
+    if not User.validUserId(userid):
+        return redirect(url_for('reports', message="invalid-user"))
+    try:
+        notification = Notification('Sin notificacion')
+        notification.write()
+        alert = Alert('Sin alerta', notification.idNotification)
+        alert.write()
+        report = Reports(
+            alert.idAlert,
+            request.form['description'],
+            request.form['neighborhood'],
+            request.form['stage'],
+            request.form['aggressor'],
+            request.form['complaint'],
+            request.form['collective'],
+            userid
+        )
+        report.write()
+        mapping = Mapping(
+            report.idReport,
+            request.form['alertType'],
+            float(request.form['latitude']),
+            float(request.form['longitude']),
+            userid
+        )
+        mapping.write()
+    except Exception:
+        return redirect(url_for('reports', message="error"))
+    return redirect(url_for('reports', message="success"))
 
 
 @app.route('/map', methods=['GET', 'POST'])
