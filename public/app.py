@@ -72,12 +72,12 @@ def login():
     login = LogIn(request.form)
     if request.method == 'POST' and login.validate():
         user = User.getUser(login.email.data)
-        print(user['password'])
-        print(request.form['password'])
-        print(bcrypt.generate_password_hash(request.form['password'], 10).decode('utf-8'))
+        if user is False:
+            flash('Usuario no registrado')
+            return redirect(request.referrer)
         confirm = bcrypt.check_password_hash(user['password'],\
             request.form['password'])
-        if user == False or confirm == False:
+        if confirm == False:
             flash('Email y/o contraseña invalidos')
             # TODO: Handler errors
             return redirect(request.referrer)
@@ -88,10 +88,11 @@ def login():
 
 @app.route('/logout', methods=['GET'])
 def logout():
-   if request.referrer == None:
-       return redirect(url_for('index'))
-   [session.pop(key) for key in list(session.keys())]
-   return redirect(request.referrer)
+    print('entro')
+    if request.referrer == None:
+        return redirect(url_for('index'))
+    [session.pop(key) for key in list(session.keys())]
+    return redirect(request.referrer)
 
 
 @app.route('/reports', methods=['GET', 'POST'])

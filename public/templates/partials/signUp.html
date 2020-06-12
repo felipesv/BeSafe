@@ -1,16 +1,20 @@
-<div class="model fade" id="signup" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+<div class="modal fade" id="signup" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
   <div class="form-container modal-dialog modal-dialog-centered">
-    <p>Registrate en BeSafe para poder generar reportes</p>
-    <form action="/sign_up" method="POST" class="d-flex flex-column form">
-      <p>BeSafe</p>
-      {{ signUp.name.label }} {{ signUp.name(placeholder="name") }}
-      {{ signUp.email.label }} {{ signUp.email(placeholder="email") }}
-      {{ signUp.password.label }} {{ signUp.password(placeholder="password") }}
-      <p id="check_pass"></p>
-      {{ signUp.confirm.label }} {{ signUp.confirm }}
-      {{ signUp.route(value=url_for(request.endpoint)) }}
-      {{ signUp.submit }}
-      {{ signUp.error }}
-    </form>
+    <div class="modal-content form">
+      <div class="modal-body">
+        <p>Registrate en BeSafe para poder generar reportes</p>
+        <form action="/sign_up" method="POST" class="d-flex flex-column">
+          <p>BeSafe</p>
+          <!-- {{ signUp.name.label }} --> {{ signUp.name(placeholder="name") }}
+          <!-- {{ signUp.email.label }} --> {{ signUp.email(placeholder="email") }}
+          <!-- {{ signUp.password.label }} --> {{ signUp.password(placeholder="password") }}
+          <p id="check_pass"></p>
+          <!-- {{ signUp.confirm.label }} --> {{ signUp.confirm(placeholder="confirm password") }}
+          {{ signUp.route(value=url_for(request.endpoint)) }}
+          {{ signUp.submit }}
+          {{ signUp.error }}
+        </form>
+      </div>
+    </div>
   </div>
 </div>

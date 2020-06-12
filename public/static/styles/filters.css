@@ -16,7 +16,7 @@
   width: 13rem;
   height: auto;
   padding-bottom: 25px;
-  z-index: 1000;
+  z-index: 2;
   top: 20%;
   right: 0;
   margin-right: 10px;
@@ -49,4 +49,7 @@
 .magen {
   background-color: hsl(295, 79%, 36%);
   display: none;
+}
+.leaflet-pane {
+  z-index: 0;
 }

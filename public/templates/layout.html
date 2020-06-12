@@ -44,7 +44,9 @@
   <header>
     {% include 'partials/nav.html' %}
   </header>
-  <main class="container-fluid">
+  <main class="container-fluid mt-50">
+    {% include 'partials/logIn.html' %}
+    {% include 'partials/signUp.html' %}
     {% block content %}{% endblock content %}
   </main>
 </body>

@@ -1,14 +1,13 @@
 <nav class="navb">
   <a class="menu-list" href="#">MENU</a>
-  <a class=account href="#gen_report">GENERAR REPORTE DE VIOLENCIA</a>
   {% if 'user' not in session %}
-  <a class=account data-toggle="modal" data-target="#login">INICIAR SESIÓN</a>
-  <a class=account data-toggle="modal" data-target="#signup">REGISTRO</a>
+  <a class=account href="#" data-toggle="modal" data-target="#login">GENERAR REPORTE DE VIOLENCIA</a>
+  <a class=account href="#" data-toggle="modal" data-target="#login">INICIAR SESIÓN</a>
+  <a class=account href="#" data-toggle="modal" data-target="#signup">REGISTRO</a>
   {% else %}
-  <a class=account data-toggle="modal" href="{{ url_for('logout') }}">CERRAR SESIÓN</a>
-  <a class=account data-toggle="modal" href="#">{{ session['name'] }}</a>
+  <a class=account href="{{ url_for('reports') }}"">GENERAR REPORTE DE VIOLENCIA</a>
+  <a class=account href="{{ url_for('logout') }}">CERRAR SESIÓN</a>
+  <a class=account href="#" data-toggle="modal" href="#">{{ session['name'] }}</a>
   {% endif %}
   <a class=logo-header href="{{ url_for('index') }}"></a>
 </nav>
-{% include 'partials/logIn.html' %}
-{% include 'partials/signUp.html' %}

@@ -81,4 +81,12 @@ $(document).ready(function () {
   });
   $('.menu-list').click(() => $('#menu').animate({'margin-left': '0'}, 'slow'));
   $('.close').click(() => $('#menu').animate({'margin-left': '-=100vw'}, 'slow'));
+  /* modal */
+  $('#signup').click(() => { $('my-modal').css({'display': 'block'}) });
+  $('#login').click(() => { $('my-modal').css({'display': 'block'}) });
+  $('#my-modal').click(function (e) { 
+    e.preventDefault();
+    $(this).css({'display': 'none'});
+  });
+  /* end modal */
 });
