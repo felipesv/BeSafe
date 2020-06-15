@@ -43,23 +43,23 @@ $ cd
 
 ### initiation: 📟
 
-![alt text](https://ibb.co/HpcLF7Q)
+![alt text](https://i.imgur.com/5WmGLZq.png)
 
 ### Menu: 💻
 
-![alt text](https://ibb.co/3B4fdGz)
+![alt text](https://i.imgur.com/ajXoQl1.png)
 
 ### Map: 📍
 
-![alt text](https://ibb.co/Hh2qj8k)
+![alt text](https://i.imgur.com/tqSYl3i.png)
 
 ### Contact: 📱
 
-![alt text](https://ibb.co/Y3mZy3V)
+![alt text](https://i.imgur.com/EmAOJQH.png)
 
 ### comments: 📨
 
-![alt text](https://ibb.co/zXd3VdB)
+![alt text](https://i.imgur.com/nPecjll.png)
 
 
 ## Authors 📜
