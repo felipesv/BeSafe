@@ -36,7 +36,7 @@ $ cd
 ## Mockups :notebook:
 
 ### _structures_
-![Alt text](https://imgur.com/EYMrrMC)
+![Alt text](https://i.imgur.com/EYMrrMC.png)
 
 
 ## Final (ScreenShots) :camera:
