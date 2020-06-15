@@ -142,4 +142,34 @@ $(document).ready(function() {
       validCampus();
     });
   });
+  $('#n-1').click(function (e) { 
+    e.preventDefault();
+    $('#second').animate({'left': '0'}, 'slow');
+    $('#third').animate({'left': '100vw'}, 'slow');
+    $('#fourth').animate({'left': '200vw'}, 'slow');
+  });
+  $('#n-2').click(function (e) { 
+    e.preventDefault();
+    $('#third').animate({'left': '0'}, 'slow');
+    $('#fourth').animate({'left': '100vw'}, 'slow');
+  });
+  $('#n-3').click(function (e) { 
+    e.preventDefault();
+    $('#fourth').animate({'left': '0'}, 'slow');
+  });
+  $('#b-1').click(function (e) { 
+    e.preventDefault();
+    $('#second').animate({'left': '100vw'}, 'slow');
+    $('#third').animate({'left': '200vw'}, 'slow');
+    $('#fourth').animate({'left': '300vw'}, 'slow');
+  });
+  $('#b-2').click(function (e) { 
+    e.preventDefault();
+    $('#third').animate({'left': '100vw'}, 'slow');
+    $('#fourth').animate({'left': '200vw'}, 'slow');
+  });
+  $('#b-3').click(function (e) { 
+    e.preventDefault();
+    $('#fourth').animate({'left': '100vw'}, 'slow');
+  });
 });
