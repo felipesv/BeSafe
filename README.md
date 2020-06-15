@@ -36,7 +36,7 @@ $ cd
 ## Mockups :notebook:
 
 ### _structures_
-![alt text](https://ibb.co/LPw9nJ3)
+![alt text](cp :\Users\aurap\Downloads\draws\app\ilu\inicio.PNG)
 
 
 ## Final (ScreenShots) :camera:
