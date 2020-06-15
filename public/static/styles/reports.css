@@ -1,0 +1,59 @@
+.content {
+  margin: 5rem auto;
+  width: 90%;
+}
+.bg-reports {
+  background-image: url('../images/back_reporte.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #FFF;
+  top: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+}
+.bg-reports:first-child {
+  left: 0;
+}
+.bg-reports:nth-child(2) {
+  left: 100vw;
+}
+.bg-reports:nth-child(3) {
+  left: 200vw;
+}
+.bg-reports:nth-child(4) {
+  left: 300vw;
+}
+input[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  content: url('../images/tick_gray.svg');
+  height: 4rem;
+  width: 4rem;
+}
+.label-report {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  flex-basis: 12rem;
+}
+.label-report input {
+  align-self: center;
+  margin: 1rem 0;
+}
+.label-report-2 {
+  flex-basis: 7rem;
+}
+.label-report-2 input[type="radio"] {
+  height: 2rem;
+  width: 2rem;
+}
+.next {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.next button {
+  margin-left: 2rem;
+}
