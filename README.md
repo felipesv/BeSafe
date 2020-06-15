@@ -9,18 +9,31 @@ Record levels of violence and generate alarms (depending on the type and degree 
 ## Requirements :pencil:
 
 
-⚙ Framework: Flask
+⚙
 
-⚙ Languages: Python3, Javascript, Jquery
+Framework: Flask
 
-⚙ Design: CSS
+⚙  
 
-⚙ Design Tools: XD, Illustrator, Photoshop
+Languages: Python3, Javascript, Jquery
 
-⚙ Dadabase: FireBase
+⚙ 
 
-⚙ APIs: leaflet 
+Design: CSS
 
+⚙
+
+Design Tools: XD, Illustrator, Photoshop
+
+⚙  
+
+Dadabase: FireBase
+
+⚙  
+
+APIs: leaflet 
+
+⚙
 
 ## Installation :package:
 
