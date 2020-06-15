@@ -10,10 +10,15 @@ Record levels of violence and generate alarms (depending on the type and degree 
 
 
 ⚙ Framework: Flask
+
 ⚙ Languages: Python3, Javascript, Jquery
+
 ⚙ Design: CSS
+
 ⚙ Design Tools: XD, Illustrator, Photoshop
+
 ⚙ Dadabase: FireBase
+
 ⚙ APIs: leaflet 
 
 
@@ -38,6 +43,14 @@ $ cd
 ### _structures_
 ![Alt text](https://i.imgur.com/EYMrrMC.png)
 
+### _First Mockups_
+![Alt text](https://imgur.com/0bzIRzS.png)
+
+### _Second Mockups_
+![Alt text](https://i.imgur.com/ZfUs0Vd.png)
+
+### _Reports_
+![Alt text](https://imgur.com/xNioCVw.png)
 
 ## Final (ScreenShots) :camera:
 
