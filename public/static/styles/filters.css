@@ -17,7 +17,7 @@
   height: auto;
   padding-bottom: 25px;
   z-index: 2;
-  top: 20%;
+  top: 10%;
   right: 0;
   margin-right: 10px;
 }
@@ -30,12 +30,14 @@
   border: none;
   border-top: 1px solid hsl(286, 95%, 32%);
   color: #FFF;
+  /* padding: 0.65rem 0; */
   padding: 0.65rem 0;
   font-size: .7rem;
 }
-.filter  div {
-  margin: 0 !important; 
-}
+/* .filter .show {
+  display: flex;
+  flex-direction: column;
+} */
 .filter > * {
   margin: 0 1rem;
 }
@@ -46,9 +48,12 @@
   background-color: hsl(178, 53%, 60%);
   border-radius: .2rem;
 }
+.accordion .magen {
+  display: block;
+  width: 100%;
+}
 .magen {
   background-color: hsl(295, 79%, 36%);
-  display: none;
 }
 .leaflet-pane {
   z-index: 0;

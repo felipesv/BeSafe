@@ -17,13 +17,21 @@
   width: 62%;
   margin: auto;
 }
-.form input {
+/* .form input {
   margin-bottom: .8rem;
+} */
+.form label {
+  align-self: baseline;
+  background-color: #FFFFFF;
+  padding: 0 .5rem;
+  transform: translate(.3rem, 80%) scale(0.9, 0.9);
+
 }
 .form button, .form input[type=submit] {
   border: none;
   color: #FFF;
   background-color: hsl(178, 63%, 57%);
+  margin-top: .8rem;
   padding: .4rem;
 }
 .my-modal {

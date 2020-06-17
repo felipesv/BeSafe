@@ -12,7 +12,7 @@ $(document).ready(function() {
     }).addTo(reportMap);
     let markerRpt = 0;
 
-
+    console.log('despues del mapa');
     function validCampus() {
       let cont = 0;
       if ($('#typeAlertRpt').val().length > 0)
@@ -40,7 +40,7 @@ $(document).ready(function() {
 
       $('#formFields').html(cont + '/8');
     }
-
+    console.log('despues verificacion function');
     // handle type violence click
     $('.chooseViolence').on('click', function() {
       const chosenVal = $(this).attr('attr-id');
@@ -53,12 +53,12 @@ $(document).ready(function() {
       $('#typeAggressorRpt').val(chosenVal);
       validCampus();
     });
-    // handle collective group click
+    /* // handle collective group click
     $('.chooseCollective').on('click', function() {
       const chosenVal = $(this).attr('attr-id');
       $('#collectiveGroupRpt').val(chosenVal);
       validCampus();
-    });
+    }); */
     // handle stage click
     $('.chooseStage').on('click', function() {
       const chosenVal = $(this).attr('attr-id');
@@ -66,19 +66,20 @@ $(document).ready(function() {
       validCampus();
     });
     //handle neighborhood chosen
-    function uploadAutoComplete(dataautocomplete) {
-      $('#searchNeighborhood').autocomplete({
+    function uploadAutoComplete(dataautocomplete, input, chooseVal) {
+      console.log('llego');
+      $(input).autocomplete({
         source: dataautocomplete,
         select: function( event, ui ) {
           const chosenVal = ui.item.id;
-          $('#neighborhoodRpt').val(chosenVal);
+          $(chooseVal).val(chosenVal);
           validCampus();
         }
       });
 
-      $('#searchNeighborhood').on('change', function() {
+      $(input).on('change', function() {
         if ($(this).val().length === 0)
-          $('#neighborhoodRpt').val('');
+          $(chooseVal).val('');
         validCampus();
       });
     }
@@ -128,10 +129,25 @@ $(document).ready(function() {
           'id': item.idNeighborhood
         });
       });
-      
-      uploadAutoComplete(dataautocomplete);
+      console.log(dataautocomplete);
+      uploadAutoComplete(dataautocomplete, '#searchNeighborhood', '#neighborhoodRpt');
     });
 
+    const dbRefIndentity = firebase.database().ref().child('collective_group');
+    dbRefIndentity.on('value', snap => {
+      const collective_group = snap.val();
+      const dataautocomplete = [];
+
+      Object.values(collective_group).forEach(item => {
+        dataautocomplete.push({
+          'value': item.name,
+          'id': item.idCollective
+        });
+      });
+
+      uploadAutoComplete(dataautocomplete, '#searchIdentity', '#collectiveGroupRpt');
+    });
+    console.log('despues del firebase');
     //LEAFLET click map
     reportMap.on('click', function(e) {
       if (markerRpt != 0)
@@ -156,6 +172,7 @@ $(document).ready(function() {
   $('#n-3').click(function (e) { 
     e.preventDefault();
     $('#fourth').animate({'left': '0'}, 'slow');
+    $('.submit').css('display', 'inline-block');
   });
   $('#b-1').click(function (e) { 
     e.preventDefault();
@@ -171,5 +188,10 @@ $(document).ready(function() {
   $('#b-3').click(function (e) { 
     e.preventDefault();
     $('#fourth').animate({'left': '100vw'}, 'slow');
+    $('#fifth').animate({'left': '+=100vw'}, 'slow');
+  });
+  $('#b-4').click(function (e) { 
+    e.preventDefault();
+    $('#fifth').animate({'left': '+=100vw'}, 'slow');
   });
 });

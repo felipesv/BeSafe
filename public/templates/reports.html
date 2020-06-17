@@ -20,105 +20,32 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
   <!--OWN JS-->
   <script defer src="{{ url_for('static', filename='scripts/handleReports.js') }}?{{ cache }}"></script>
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&amp;display=swap" rel="stylesheet">
+  <!-- Our styles -->
   <link rel="stylesheet" href="{{ url_for('static', filename='styles/reports.css') }}?{{ cache }}">
   <title>Reports</title>
 </head>
 <body>
-  <div id="first" class="bg-reports">
-    <div class="content">
-      <h1>NUEVO REPORTE</h1>
-      <div class="d-flex flex-wrap mt-5">
-        <!--
-          Aqui se muestran los tipos de violencia
-          las opciones deben llevar los attr-id asi como esta ahi y
-          la clase chooseViolence que es para manejar el evento del click cuando seleccionen uno
-        -->
-        {% for violence in violences.values()|sort(attribute='name') %}
-          <label class="label-report">
-            <input type="radio" name="options" attr-id="{{ violence.idAlerttype }}" autocomplete="off" class="chooseViolence"> {{ violence.name }}
-          </label>
-        {% endfor %}
+  {% include 'partials/violence.html' %}
+  {% include 'partials/aggressors.html' %}
+  {% include 'partials/collective.html' %}
+  {% include 'partials/location.html' %}
+  <!--
+      aqui se controlan los mensajes de si si guardo o que (lo mas bonito que hice)
+    -->
+    {% if message == 'success' %}
+      <div class="alert alert-success" role="alert">
+        <strong>Reporte Creado</strong> Tu reporte ha sido creado gracias por colaborar!.
       </div>
-      <div class="next mt-2">
-        <a href="{{ url_for('index') }}" class="btn btn-danger">Cancelar</a>
-        <button id="n-1" class="btn btn-primary">Siguiente</button>
+    {% elif message == 'invalid-user' %}
+      <div class="alert alert-warning" role="alert">
+        <strong>Usuario no valido!</strong> Verifica tu sesion y vuelve a intentarlo!
       </div>
-    </div>
-  </div>
-  <div id="second" class="bg-reports">
-    <div class="content">
-      <h1>NUEVO REPORTE</h1>
-      <div class="d-flex flex-wrap mt-5">
-        <!--
-          Aqui se muestran los tipos de agresores
-          las opciones deben llevar los attr-id asi como esta ahi y
-          la clase chooseAgressor que es para manejar el evento del click cuando seleccionen uno
-        -->
-        {% for aggressor in aggressors.values()|sort(attribute='name') %}
-          <label class="label-report">
-            <input type="radio" name="options" attr-id="{{ aggressor.idAggressor }}" autocomplete="off" class="chooseAgressor"> {{ aggressor.name }}
-          </label>
-        {% endfor %}
+    {% elif message == 'error' %}
+      <div class="alert alert-danger" role="alert">
+        <strong>Ocurrio un error</strong> Intenta de nuevo o comunica con un administrador!
       </div>
-      <div class="next mt-2">
-        <button id="b-1" class="btn btn-primary">Anterior</button>
-        <button id="n-2" class="btn btn-primary">Siguiente</button>
-      </div>
-    </div>
-  </div>
-  <div id="third" class="bg-reports">
-    <div class="content">
-      <h1>NUEVO REPORTE</h1>
-      <div class="d-flex flex-wrap mt-5">
-        <!--
-          Aqui se muestran los grupos del colectivo
-          las opciones deben llevar los attr-id asi como esta ahi y
-          la clase chooseCollective que es para manejar el evento del click cuando seleccionen uno
-        -->
-        {% for collective in collectives.values()|sort(attribute='name') %}
-          <label class="label-report label-report-2">
-            <input type="radio" name="options" attr-id="{{ collective.idCollective }}" autocomplete="off" class="chooseCollective"> {{ collective.name }}
-          </label>
-        {% endfor %}
-      </div>
-      <div class="next mt-2">
-        <button id="b-2" class="btn btn-primary">Anterior</button>
-        <button id="n-3" class="btn btn-primary">Siguiente</button>
-      </div>
-    </div>
-  </div>
-  <div id="fourth" class="bg-reports">
-    <div class="content">
-      <h1>NUEVO REPORTE</h1>
-      <div class="d-flex flex-wrap mt-2">
-        <!--
-          Aqui se muestran los diferente escenarios
-          las opciones deben llevar los attr-id asi como esta ahi y
-          la clase chooseStage que es para manejar el evento del click cuando seleccionen uno
-        -->
-        {% for stage in stages.values()|sort(attribute='name') %}
-          <label class="label-report label-report-2">
-            <input type="radio" name="options" attr-id="{{ stage.idStages }}" autocomplete="off" class="chooseStage"> {{ stage.name }}
-          </label>
-        {% endfor %}
-      </div>
-      <div class="next mt-2">
-        <button id="b-3" class="btn btn-primary">Anterior</button>
-        <button id="n-4" class="btn btn-primary">Siguiente</button>
-      </div>
-    </div>
-  </div>
-  <form action="{{ url_for('create_report') }}" method="POST">
-    {{ report.alertType() }}
-    {{ report.aggressor() }}
-    {{ report.collective() }}
-    {{ report.stage() }}
-    {{ report.complaint() }}
-    {{ report.description(class="hiddenForm") }}
-    {{ report.neighborhood() }}
-    {{ report.latitude() }}
-    {{ report.longitude() }}
-    {{ report.submit(disabled=True) }}
-  </form>
+    {% endif %}
 </body>
 </html>
