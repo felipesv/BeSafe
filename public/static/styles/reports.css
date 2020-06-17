@@ -1,5 +1,8 @@
+* {
+  font-family: 'Anton', sans-serif;
+}
 .content {
-  margin: 5rem auto;
+  margin: 2rem auto;
   width: 90%;
 }
 .bg-reports {
@@ -24,6 +27,9 @@
 .bg-reports:nth-child(4) {
   left: 300vw;
 }
+.bg-reports:nth-child(5) {
+  left: 400vw;
+}
 input[type="radio"] {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -31,6 +37,9 @@ input[type="radio"] {
   content: url('../images/tick_gray.svg');
   height: 4rem;
   width: 4rem;
+}
+input[type="radio"]:checked {
+  content: url('../images/tick.svg');
 }
 .label-report {
   display: flex;
@@ -56,4 +65,50 @@ input[type="radio"] {
 }
 .next button {
   margin-left: 2rem;
+}
+.hiddenForm {
+  display: none;
+}
+input[type=text], input[type=textarea] {
+  border: none;
+  border-bottom: 1px solid #FFF;
+  background-color: transparent;
+  color: #FFF;
+}
+.identity, .denuncia {
+  width: 50%;
+}
+.identity {
+  flex-wrap: wrap;
+}
+.denuncia {
+  justify-content: center;
+  text-align: center;
+}
+.identity label:first-child, .denuncia label:first-child {
+  display: block;
+  width: 100%;
+}
+.decription, #searchIdentity,
+.stages, .barrio {
+  width: 50%;
+}
+.cian {
+  background-color: hsl(178, 53%, 60%);
+  border: none;
+  border-radius: .2rem;
+  padding: .5rem 1rem;
+  color: #FFF;
+  display: none;
+}
+.cian:disabled {
+  background-color: #adadad;
+}
+.ubication {
+  margin-top: 2rem;
+}
+.submit {
+  position: fixed;
+  right: 5%;
+  bottom: 14%;
 }

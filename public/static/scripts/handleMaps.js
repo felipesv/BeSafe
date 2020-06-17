@@ -209,8 +209,8 @@ $(document).ready(function () {
 
       markerMapping();
     });
-
-    $('.btnFiltro').on('click', function() {
+    $('.btnFiltro').on('click', function(e) {
+      e.preventDefault();
       if($(this).attr('attr-ck') === "") {
         $(this).attr('attr-ck', 'checked');
         filters[$(this).attr('attr-id')] = $(this).text();

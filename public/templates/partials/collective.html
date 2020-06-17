@@ -1,0 +1,45 @@
+<div id="third" class="bg-reports">
+  <div class="content">
+    <h1>NUEVO REPORTE</h1>
+    <!-- <h2>Grupo del colectivo con el que más te identificas</h2> -->
+    <div class="d-flex flex-wrap mt-5">
+      <div class="identity d-flex">
+        <!--
+          Aqui se muestran los grupos del colectivo
+          las opciones deben llevar los attr-id asi como esta ahi y
+          la clase chooseCollective que es para manejar el evento del click cuando seleccionen uno
+        -->
+        <label for="searchIdentity">Orientación sexual o Identidad de la victima</label>
+        <input id="searchIdentity" type="text">
+        <p>Esta pregunta tiene fines meramente estadístico, aseguramos que estos datos no serán usados con fines de otro tipo</p>
+      </div>
+      <div class="denuncia d-flex flex-wrap">
+        <!--
+          Aqui se muestran las opciones para saber si hubo denuncia
+          todas dos llevan la clase chooseComplaint
+          la opcion no debe llevar el attr-id="No"
+          la opcion si debe llevar el attr-id="Si"
+        -->
+        <label class="d-block" for="">¿Existe denuncia?</label>
+        <label class="label-report">
+          <input type="radio" name="options" attr-id="No" autocomplete="off" class="chooseComplaint"> No
+        </label>
+        <label class="label-report">
+          <input type="radio" name="options" attr-id="Si" autocomplete="off" class="chooseComplaint"> Si
+        </label>
+      </div>
+      <div class="description">
+        <label for="exampleFormControlTextarea1">Description</label>
+        <!--
+          aqui esta el text area para que ingrese una descripcion de lo que paso
+          debe llevar el id chooseDescription
+        -->
+        <textarea class="form-control" rows="3" id="chooseDescription"></textarea>
+      </div>
+    </div>
+    <div class="next mt-2">
+      <button id="b-2" class="btn btn-primary">Anterior</button>
+      <button id="n-3" class="btn btn-primary">Siguiente</button>
+    </div>
+  </div>
+</div>

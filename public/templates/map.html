@@ -23,26 +23,34 @@
  </div>
   <div class="filter d-flex flex-column">
     <p>FILTRAR POR</p>
-    <button class="cian">VIOLENCIA CON RIESGO DE VIDA</button>
-    {% for alerttype in dataAlertType.values()|sort(attribute='name') %}
-      {% if alerttype.level == 1 %}
-        <button class="magen btnFiltro" attr-id="{{ alerttype.idAlerttype }}" attr-ck="">{{ alerttype.name }}</button>
-      {% endif %}
-    {% endfor %}
-    <button class="cian">VIOLENCIA FISICA O PSICOLÓGICA</button>
-    {% for alerttype in dataAlertType.values()|sort(attribute='name') %}
-      {% if alerttype.level == 2 %}
-        <button class="magen btnFiltro" attr-id="{{ alerttype.idAlerttype }}" attr-ck="">{{ alerttype.name }}</button>
-      {% endif %}
-    {% endfor %}
-    <button class="cian">OTRO TIPO DE VIOLENCIA</button>
-    {% for alerttype in dataAlertType.values()|sort(attribute='name') %}
-      {% if alerttype.level == 0 %}
-        <button class="magen btnFiltro" attr-id="{{ alerttype.idAlerttype }}" attr-ck="">{{ alerttype.name }}</button>
-      {% endif %}
-    {% endfor %}
+    <div class="accordion d-flex flex-column" id="accordion-parent">
+      <button aria-expanded="false" aria-controls="collapseOne" data-toggle="collapse" data-target="#collapseOne" class="cian collapsed">VIOLENCIA CON RIESGO DE VIDA</button>
+      <div id="collapseOne" class="collapse" data-parent="#accordion-parent">
+        {% for alerttype in dataAlertType.values()|sort(attribute='name') %}
+          {% if alerttype.level == 1 %}
+            <button class="magen btnFiltro" attr-id="{{ alerttype.idAlerttype }}" attr-ck="">{{ alerttype.name }}</button>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <button aria-expanded="false" aria-controls="collapseTwo" data-toggle="collapse" data-target="#collapseTwo" class="cian collapsed">VIOLENCIA FISICA O PSICOLÓGICA</button>
+      <div id="collapseTwo" class="collapse" data-parent="#accordion-parent">
+        {% for alerttype in dataAlertType.values()|sort(attribute='name') %}
+          {% if alerttype.level == 2 %}
+            <button class="magen btnFiltro" attr-id="{{ alerttype.idAlerttype }}" attr-ck="">{{ alerttype.name }}</button>
+          {% endif %}
+        {% endfor %}
+      </div>
+      <button aria-expanded="false" aria-controls="collapseThree" data-toggle="collapse" data-target="#collapseThree" class="cian collapsed">OTRO TIPO DE VIOLENCIA</button>
+      <div id="collapseThree" class="collapse" data-parent="#accordion-parent">
+        {% for alerttype in dataAlertType.values()|sort(attribute='name') %}
+          {% if alerttype.level == 0 %}
+            <button class="magen btnFiltro" attr-id="{{ alerttype.idAlerttype }}" attr-ck="">{{ alerttype.name }}</button>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
     <button class="cian btnClearFilter">LIMPIAR FILTROS</button>
-    <button class="magen btnComuna" attr-ck="">MOSTRAR COMUNAS</button>
+    <button class="cian btnComuna" attr-ck="">MOSTRAR COMUNAS</button>
   </div>
   <!--MODAL WHEN CLICK IN COMUNA-->
   <div class="modal" tabindex="-1" role="dialog" id="comunaDetails">

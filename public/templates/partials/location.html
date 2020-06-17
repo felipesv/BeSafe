@@ -1,0 +1,73 @@
+<div id="fourth" class="bg-reports">
+  <div class="content">
+    <h1>NUEVO REPORTE</h1>
+    <div class="d-flex flex-wrap mt-5">
+      <div class="barrio">
+        <h3 style="display: block; width: 100%;">Barrio</h3>
+        <input id="searchNeighborhood" type="text">
+      </div>
+      <div class="stages">
+      <h3>Escenario del acto de violencia</h3>
+        <!--
+          Aqui se muestran los diferente escenarios
+          las opciones deben llevar los attr-id asi como esta ahi y
+          la clase chooseStage que es para manejar el evento del click cuando seleccionen uno
+        -->
+        <input id="searchStage" type="text">
+      </div>
+      <div class="ubication">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <!--
+            Aqui se muestran las opciones para seleccionar coordenadas
+            la opcion ubicacion actual debe llevar clase chooseCoordinateC
+            la opcion seleccionar ubicacion debe llevar la clase chooseCoordinateM
+          -->
+          <label class="btn cian">
+            <input type="radio" name="options" autocomplete="off" class="chooseCoordinateC"> Posicion actual
+          </label>
+          <label class="btn cian">
+            <input type="radio" name="options" autocomplete="off" class="chooseCoordinateM"> Seleccionar en mapa
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="next mt-2">
+      <!-- <button id="b-3" class="btn btn-primary">Anterior</button> -->
+    </div>
+  </div>
+</div>
+<form action="{{ url_for('create_report') }}" method="POST">
+  {{ report.alertType() }}
+  {{ report.aggressor() }}
+  {{ report.collective() }}
+  {{ report.stage() }}
+  {{ report.complaint() }}
+  {{ report.description(class="hiddenForm") }}
+  {{ report.neighborhood() }}
+  {{ report.latitude() }}
+  {{ report.longitude() }}
+  {{ report.submit(disabled=True, class="submit cian") }}
+</form>
+<!--
+  aqui esta el modal donde la persona selecciona en el mapa donde fue que fue el asunto
+  esto creeria no se toca
+-->
+<div class="modal fade" id="modalMapRpt" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitle">Marque una psosicion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="height: 300px;">
+        <div id="mapRpt" style="width: 100%; height: 100%;"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--end REPORT FORM-->
