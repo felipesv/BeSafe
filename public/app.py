@@ -17,6 +17,7 @@ from models.alerts import Alert
 from models.stage import Stage
 from models.reports import Reports
 from models.mapping import Mapping
+from models.contact import Contact
 from public.forms import SignUp, LogIn, Report
 import json
 
@@ -186,9 +187,16 @@ def help():
     return render_template('help.html', signUp=signUp, logIn=logIn, cache=cache)
 
 
-@app.route('/help_form', methods=['GET', 'POST'])
+@app.route('/help_form', methods=['POST'])
 def help_form():
-   pass
+    newContact = Contact(
+        request.form['name'],
+        request.form['city'],
+        request.form['email'],
+        request.form['message']
+    )
+    newContact.write()
+    return redirect(url_for('index'))
 
 @app.route('/stadistic', methods=['POST'])
 def stadistic_comuna():
