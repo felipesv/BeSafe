@@ -1,6 +1,6 @@
 $(document).ready(function() {
   // script to use
-  script1 = $.getScript('http://besafeapp.freevar.com/files/firebaseConfig.js');
+  script1 = $.getScript('https://www.felipesv.tech/static/scripts/firebaseConfig.js');
 
   // when the script are loaded
   $.when(script1).done(function() {
@@ -12,26 +12,44 @@ $(document).ready(function() {
     }).addTo(reportMap);
     let markerRpt = 0;
 
-    console.log('despues del mapa');
     function validCampus() {
       let cont = 0;
-      if ($('#typeAlertRpt').val().length > 0)
-        cont++;
-      if ($('#typeAggressorRpt').val().length > 0)
-        cont++;
+      // page #1
+      let contp1 = 0;
+      if ($('#typeAlertRpt').val().length > 0) {
+        contp1++;
+        $('#n-1').removeAttr('disabled');
+      }
+
+      // page #2
+      let contp2 = 0;
+      if ($('#typeAggressorRpt').val().length > 0) {
+        contp2++;
+        $('#n-2').removeAttr('disabled');
+      }
+
+      // page #3
+      let contp3 = 0;
       if ($('#collectiveGroupRpt').val().length > 0)
-        cont++;
-      if ($('#stagesRpt').val().length > 0)
-        cont++;
-      if ($('#complaintRpt').val().length > 0)
-        cont++;
+        contp3++;
       if ($('#descriptionRpt').val().length > 0)
-        cont++;
-      if ($('#neighborhoodRpt').val().length > 0)
-        cont++;
-      if ($('#latitudeRpt').val().length > 0 && $('#longitudeRpt').val().length > 0)
-        cont++;
+        contp3++;
+      if ($('#complaintRpt').val().length > 0)
+        contp3++;
       
+      if (contp3 == 3)
+        $('#n-3').removeAttr('disabled');
+
+      // page #4
+      let contp4 = 0;
+      if ($('#stagesRpt').val().length > 0)
+        contp4++;
+      if ($('#neighborhoodRpt').val().length > 0)
+        contp4++;
+      if ($('#latitudeRpt').val().length > 0 && $('#longitudeRpt').val().length > 0)
+        contp4++;
+ 
+      cont = contp1 + contp2 + contp3 + contp4;
       if (cont == 8) {
         $('#createReportRpt').prop('disabled', false);
       } else {
@@ -39,8 +57,8 @@ $(document).ready(function() {
       }
 
       $('#formFields').html(cont + '/8');
+      console.log("Van seleccionados "+ cont + "/8");
     }
-    console.log('despues verificacion function');
     // handle type violence click
     $('.chooseViolence').on('click', function() {
       const chosenVal = $(this).attr('attr-id');
@@ -53,21 +71,14 @@ $(document).ready(function() {
       $('#typeAggressorRpt').val(chosenVal);
       validCampus();
     });
-    /* // handle collective group click
-    $('.chooseCollective').on('click', function() {
-      const chosenVal = $(this).attr('attr-id');
-      $('#collectiveGroupRpt').val(chosenVal);
-      validCampus();
-    }); */
     // handle stage click
     $('.chooseStage').on('click', function() {
       const chosenVal = $(this).attr('attr-id');
       $('#stagesRpt').val(chosenVal);
       validCampus();
     });
-    //handle neighborhood chosen
+    //handle autocomplete fields chosen
     function uploadAutoComplete(dataautocomplete, input, chooseVal) {
-      console.log('llego');
       $(input).autocomplete({
         source: dataautocomplete,
         select: function( event, ui ) {
@@ -116,9 +127,8 @@ $(document).ready(function() {
 
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-    // firebase variables
+
     const dbRefNeighborhoods = firebase.database().ref().child('neighborhood');
-    //
     dbRefNeighborhoods.on('value', snap => {
       const neighborhoods = snap.val();
       const dataautocomplete = [];
@@ -129,7 +139,6 @@ $(document).ready(function() {
           'id': item.idNeighborhood
         });
       });
-      console.log(dataautocomplete);
       uploadAutoComplete(dataautocomplete, '#searchNeighborhood', '#neighborhoodRpt');
     });
 
@@ -147,7 +156,21 @@ $(document).ready(function() {
 
       uploadAutoComplete(dataautocomplete, '#searchIdentity', '#collectiveGroupRpt');
     });
-    console.log('despues del firebase');
+
+    const dbRefStages = firebase.database().ref().child('stages');
+    dbRefStages.on('value', snap => {
+      const stages = snap.val();
+      const dataautocomplete = [];
+
+      Object.values(stages).forEach(item => {
+        dataautocomplete.push({
+          'value': item.name,
+          'id': item.idStages
+        });
+      });
+
+      uploadAutoComplete(dataautocomplete, '#searchStage', '#stagesRpt');
+    });
     //LEAFLET click map
     reportMap.on('click', function(e) {
       if (markerRpt != 0)
@@ -194,4 +217,8 @@ $(document).ready(function() {
     e.preventDefault();
     $('#fifth').animate({'left': '+=100vw'}, 'slow');
   });
+
+  $('#n-1').prop('disabled', 'true');
+  $('#n-2').prop('disabled', 'true');
+  $('#n-3').prop('disabled', 'true');
 });
