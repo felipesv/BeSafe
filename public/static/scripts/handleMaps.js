@@ -67,7 +67,7 @@ $(document).ready(function () {
           //create the charts
           getStadistics(this.options.idCom);
 
-          $("#comunaDetails").modal("show");
+          //$("#comunaDetails").modal("show");
         });
       });
     }

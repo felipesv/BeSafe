@@ -20,13 +20,17 @@ from models.mapping import Mapping
 from models.contact import Contact
 from public.forms import SignUp, LogIn, Report
 import json
+import os
 
 
 app = Flask(__name__)
 app.config.from_object('public.config')
+app.secret_key = bytes(str(os.getenv('BESAFE_SECRETKEY')), encoding='utf-8')
 app.url_map.strict_slashes = False
 bcrypt = Bcrypt(app)
 
+
+urlfor = os.getenv('BESAFE_URL')
 
 @app.route('/')
 @app.route('/index')
@@ -67,7 +71,7 @@ def sign_up():
 @app.route('/emails', methods=['POST', 'GET'])
 def email_validation():
     if request.method == 'GET':
-        return redirect(url_for('index'))
+        return redirect(urlfor +  'index')
     data = request.get_json()
     if data is None:
         abort(400, description='Not a JSON')
@@ -99,13 +103,15 @@ def login():
 def logout():
     print('entro')
     if request.referrer == None:
-        return redirect(url_for('index'))
+        return redirect(urlfor + 'index')
     [session.pop(key) for key in list(session.keys())]
     return redirect(request.referrer)
 
 
 @app.route('/reports', methods=['GET', 'POST'])
 def reports():
+    if 'user' not in session:
+        return redirect(urlfor + 'index')
     signUp = SignUp(request.form)
     logIn = LogIn(request.form)
     report = Report(request.form)
@@ -122,9 +128,9 @@ def reports():
 
 @app.route('/create_report', methods=['POST'])
 def create_report():
-    userid = '65c7158a-525f-4f3a-a5de-61056180b3f6'
+    userid = session['user']
     if not User.validUserId(userid):
-        return redirect(url_for('reports', message="invalid-user"))
+        return redirect(urlfor + 'reports?message=invalid-user')
     try:
         notification = Notification('Sin notificacion')
         notification.write()
@@ -150,8 +156,8 @@ def create_report():
         )
         mapping.write()
     except Exception:
-        return redirect(url_for('reports', message="error"))
-    return redirect(url_for('reports', message="success"))
+        return redirect(urlfor + 'reports?message=error')
+    return redirect(urlfor + 'reports?message=success')
 
 
 @app.route('/map', methods=['GET', 'POST'])
@@ -196,7 +202,7 @@ def help_form():
         request.form['message']
     )
     newContact.write()
-    return redirect(url_for('index'))
+    return redirect(urlfor + 'index')
 
 @app.route('/stadistic', methods=['POST'])
 def stadistic_comuna():
@@ -211,4 +217,4 @@ def page_404(e):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000)
