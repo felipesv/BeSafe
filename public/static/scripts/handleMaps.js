@@ -1,7 +1,7 @@
 $(document).ready(function () {
   // script to use
-  script1 = $.getScript('http://besafeapp.freevar.com/files/coordinatesPolygon.js');
-  script2 = $.getScript('http://besafeapp.freevar.com/files/firebaseConfig.js')
+  script1 = $.getScript('https://www.felipesv.tech/static/scripts/coordinatesPolygon.js');
+  script2 = $.getScript('https://www.felipesv.tech/static/scripts/firebaseConfig.js')
 
   // when the script are loaded
   $.when(script1, script2).done(function() {
@@ -115,15 +115,15 @@ $(document).ready(function () {
 
         switch(alerttypes[idAlert].level) {
           case 0:
-            icon = new iconClass({iconUrl: 'http://besafeapp.freevar.com/files/azulito.png'});
+            icon = new iconClass({iconUrl: 'https://www.felipesv.tech/static/images/azulito.png'});
             message = "Otro";
             break;
           case 1:
-            icon = new iconClass({iconUrl: 'http://besafeapp.freevar.com/files/rojito.png'});
+            icon = new iconClass({iconUrl: 'https://www.felipesv.tech/static/images/rojito.png'});
             message = "Riesgo de vida";
             break;
           case 2:
-            icon = new iconClass({iconUrl: 'http://besafeapp.freevar.com/files/naranjita.png'});
+            icon = new iconClass({iconUrl: 'https://www.felipesv.tech/static/images/naranjita.png'});
             message = "Riesgo físico o psicológico";
             break
         }
