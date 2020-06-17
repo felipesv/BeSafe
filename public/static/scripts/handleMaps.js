@@ -244,7 +244,7 @@ $(document).ready(function () {
     function getStadistics(idComuna) {
       $.ajax({
         type: "POST",
-        url: "http://0.0.0.0:5000/stadistic",
+        url: "https://www.felipesv.tech/stadistic",
         data: {
           idComuna: idComuna
         },
