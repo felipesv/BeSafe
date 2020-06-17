@@ -26,7 +26,8 @@
       <nav class="">
         <ul>
           {% if 'user' not in session %}
-          <li><a class="nav-font" data-toggle="modal" href="#login">REPORTAR</a></li>
+          <!--<li><a class="nav-font" data-toggle="modal" href="#login">REPORTAR</a></li>-->
+          <li><a class="nav-font" href="/reports">REPORTAR</a></li>
           {% else %}
           <li><a class="nav-font" href="{{ url_for('reports') }}">GENERAR REPORTE</a></li>
           {% endif %}
