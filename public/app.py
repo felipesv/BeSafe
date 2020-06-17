@@ -39,6 +39,7 @@ def index():
     cache = str(uuid4())
     signUp = SignUp(request.form)
     logIn = LogIn(request.form)
+    session['message'] = ''
     return render_template('index.html', cache=cache, signUp=signUp, logIn=logIn)
 
 
@@ -101,7 +102,6 @@ def login():
 
 @app.route('/logout', methods=['GET'])
 def logout():
-    print('entro')
     if request.referrer == None:
         return redirect(urlfor + 'index')
     [session.pop(key) for key in list(session.keys())]
@@ -120,17 +120,16 @@ def reports():
     aggressors = Aggressor.readAll()
     collectives = Collectivegroup.readAll()
     stages = Stage.readAll()
-    message=request.args.get('message')
     return render_template('reports.html', signUp=signUp, logIn=logIn, report=report, cache=cache,
-    violences=violences, aggressors=aggressors, collectives=collectives, stages=stages,
-    message=message)
+    violences=violences, aggressors=aggressors, collectives=collectives, stages=stages)
 
 
 @app.route('/create_report', methods=['POST'])
 def create_report():
     userid = session['user']
     if not User.validUserId(userid):
-        return redirect(urlfor + 'reports?message=invalid-user')
+        session['message']='invalid-user'
+        return redirect(urlfor + 'reports')
     try:
         notification = Notification('Sin notificacion')
         notification.write()
@@ -156,8 +155,10 @@ def create_report():
         )
         mapping.write()
     except Exception:
-        return redirect(urlfor + 'reports?message=error')
-    return redirect(urlfor + 'reports?message=success')
+        session['message']='error'
+        return redirect(urlfor + 'reports')
+    session['message']='success'
+    return redirect(urlfor + 'reports')
 
 
 @app.route('/map', methods=['GET', 'POST'])
@@ -166,6 +167,7 @@ def map():
     logIn = LogIn(request.form)
     cache = str(uuid4())
     dataAlertType = Alerttype.readAll()
+    session['message'] = ''
     return render_template('map.html', signUp=signUp, logIn=logIn, cache=cache, dataAlertType=dataAlertType)
 
 
