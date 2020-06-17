@@ -34,17 +34,17 @@
   <!--
       aqui se controlan los mensajes de si si guardo o que (lo mas bonito que hice)
     -->
-    {% if message == 'success' %}
+    {% if session['message'] == 'success' %}
       <div class="alert alert-success" role="alert">
         <strong>Reporte Creado!</strong> Tu reporte ha sido creado gracias por colaborar!
         <a href="/map">Volver</a>
       </div>
-    {% elif message == 'invalid-user' %}
+    {% elif session['message'] == 'invalid-user' %}
       <div class="alert alert-warning" role="alert">
         <strong>Usuario no valido!</strong> Verifica tu sesion y vuelve a intentarlo!
         <a href="/map">Volver</a>
       </div>
-    {% elif message == 'error' %}
+    {% elif session['message'] == 'error' %}
       <div class="alert alert-danger" role="alert">
         <strong>Ocurrio un error</strong> Intenta de nuevo o comunica con un administrador!
         <a href="/map">Volver</a>
