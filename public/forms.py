@@ -13,7 +13,7 @@ class SignUp(Form):
     # fields for form
     name = StringField('Your name', [Length(min=4, max=25), Required()])
     email = StringField('Your email', [Required(), Email()])
-    password = PasswordField('Password', [Required() , EqualTo('confirm', message='Passwords must match')])
+    password = PasswordField('Password', [Required() , EqualTo('confirm', message='Passwords must match')], id='passwordReg')
     confirm = PasswordField('Repeat password', [Required()])
     route = HiddenField()
     submit = SubmitField('Registrate')

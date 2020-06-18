@@ -63,20 +63,20 @@ $(document).ready(function () {
       return 'Strong';
     }
   }
-
   $('#confirm').change(function () {
-    const pass1 = $('#password').val();
+    const pass1 = $('#passwordReg').val();
     const pass2 = $('#confirm').val();
+    console.log($(this).val())
     $('#confirm + p').remove();
     $('#confirm').css('border-color', 'initial');
     if (pass1 !== pass2) {
       $('#confirm').css('border-color', '#F00');
-      $('#password').css('border-color', '#F00');
+      $('#passwordReg').css('border-color', '#F00');
       $('#confirm').after('<p class="red">No coinciden las contraseñas</p>');
     } else {
       $('#confirm + p').remove();
       $('#confirm').css('border-color', 'initial');
-      $('#password').css('border-color', 'initial');
+      $('#passwordReg').css('border-color', 'initial');
     }
   });
   $('.menu-list').click(() => $('#menu').animate({'margin-left': '0'}, 'slow'));
