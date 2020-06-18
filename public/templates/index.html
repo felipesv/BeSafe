@@ -25,14 +25,11 @@
     <aside class="col-12 col-md-6 d-flex align-content-center">
       <nav class="">
         <ul>
-          {% if 'user' not in session %}
-          <!--<li><a class="nav-font" data-toggle="modal" href="#login">REPORTAR</a></li>-->
-          <li><a class="nav-font" href="/reports">REPORTAR</a></li>
-          {% else %}
+          {% if 'user' in session %}
           <li><a class="nav-font" href="{{ url_for('reports') }}">GENERAR REPORTE</a></li>
           {% endif %}
           <li><a class="nav-font" href="{{ url_for('map') }}">MAPA VIOLENCIA</a></li>
-          <li><a class="nav-font" href="{{ url_for('about') }}">ACERCA DE</a></li>
+          <li><a class="nav-font" href="http://www.iconocomunicaciones.com/besafe">ACERCA DE</a></li>
           <li><a class="nav-font" href="{{ url_for('contact') }}">CONTACTO</a></li>
           <li><a class="nav-font" href="{{ url_for('help') }}">AYUDA</a></li>
         </ul>
