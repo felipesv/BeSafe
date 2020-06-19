@@ -475,14 +475,17 @@ em {
 }
 .icon-twitter {
   content: url('../images/twitter.svg');
+  cursor: pointer;
 }
 .icon-github {
   content: url('../images/github-image.svg');
   margin: 0 .5rem;
+  cursor: pointer;
 }
 .icon-linkedin {
   content: url('../images/linkedin.svg');
   margin-left: 0.5rem;
+  cursor: pointer;
 }
 
 .icon-twitter,
