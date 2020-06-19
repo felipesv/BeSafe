@@ -266,6 +266,9 @@ em {
 .btn-purple {
   background-color: var(--purple);
 }
+.btn-purple:hover{
+  background-color:gray;
+}
 
 /*=====  End of Section buttons  ======*/
 
