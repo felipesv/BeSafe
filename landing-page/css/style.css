@@ -1,0 +1,673 @@
+@charset "UTF-8";
+/**
+ *
+ * Block comment
+ *
+ */
+
+/*=============================================
+=           Section Gobal variables           =
+=============================================*/
+:root {
+  --anton: 'Anton', sans-serif;
+  --dancing: 'Dancing Script', cursive;
+  --oswald: 'Oswald', sans-serif;
+  --major: 'Major Mono Display', monospace;
+  --cian: hsl(178, 63%, 57%);
+  --apple: hsl(161, 100%, 42%);
+  --purple: hsl(286, 95%, 32%);
+  --yellow: hsl(48, 98%, 51%);
+  --orange: hsl(25, 82%, 58%);
+  --magenta: hsl(351, 100%, 65%);
+}
+
+/*=====  End of Section Global variables  ======*/
+
+/*===========================================
+=            Section Reset basic            =
+===========================================*/
+
+p {
+  margin: 0;
+}
+a {
+  text-decoration: none;
+}
+em {
+  font-style: normal;
+  font-size: 2.6rem;
+}
+.d-flex {
+  display: flex;
+}
+/*=====  End of Section Reset basic  ======*/
+
+
+/*=====================================
+=            Section sizes            =
+=====================================*/
+
+.w-0 {
+  width: 0;
+}
+.w-10 {
+  width: 10%;
+}
+.w-15 {
+  width: 15%;
+}
+.w-20 {
+  width: 20%;
+}
+.w-25 {
+  width: 25%;
+}
+.w-40 {
+  width: 40%;
+}
+.w-50 {
+  width: 50%;
+}
+.w-60 {
+  width: 60%;
+}
+.w-75 {
+  width: 75%;
+}
+.w-100 {
+  width: 100%;
+}
+.pb-5 {
+  padding-bottom: 5rem;
+}
+.mt-2 {
+  margin-top: 2rem;
+}
+.fw-300 {
+  font-weight: 300;
+}
+.fw-400 {
+  font-weight: 400;
+}
+.fw-500 {
+  font-weight: 500;
+}
+.fw-600 {
+  font-weight: 600;
+}
+/*=====  End of Section sizes  ======*/
+
+/*======================================
+=            Section navbar            =
+======================================*/
+
+.navbar {
+  height: 50px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.nav-progress {
+  color: #FFF;
+  height: .1rem;
+}
+.navbar .item {
+  display: inline-block;
+  padding: 0 .5rem;
+  max-height: 100%;
+  /* width: calc(30% / 5); */
+}
+.navbar ul {
+  display: flex;
+  justify-content: flex-end;
+  width: 90%;
+}
+.item a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+/*=====  End of Section navbar  ======*/
+
+/*======================================
+=            Section colors            =
+======================================*/
+
+.bg-cian {
+  background-color: var(--cian);
+}
+.bg-purple {
+  background-color: var(--purple);
+}
+.cian {
+  color: var(--cian);
+}
+.purple {
+  color: var(--purple);
+}
+.white {
+  color: #ffffff;
+}
+
+/*=====  End of Section colors  ======*/
+
+/*=========================================
+=            Section for fonts            =
+=========================================*/
+
+.anton {
+  font-family: var(--anton);
+}
+.oswald {
+  font-family: var(--oswald);
+}
+.major {
+  font-family: var(--major);
+}
+.dancing {
+  font-family: var(--dancing);
+}
+/*=====  End of Section for fonts  ======*/
+
+/*===================================
+=            Section box            =
+===================================*/
+.container-fluid {
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-wrap: wrap;
+  /* min-height: 100vh; */
+  margin: 0;
+  width: 100%;
+}
+.container-fluid:nth-child(2) {
+  background-image: url('../images/back_index.jpg');
+  padding-top: 60px;
+}
+.container-fluid:nth-child(3),
+.container-fluid:nth-child(6) {
+  background-image: url('../images/back_about.jpg');
+}
+.container-fluid:nth-child(4) {
+  background-image: url('../images/Back_second.png');
+}
+.container-fluid:nth-child(5) {
+  background-image: url('../images/back_contacto.jpg');
+}
+.container-fluid:nth-child(8) {
+  background-color: #231e24;
+  min-height: 100vh;
+}
+.container-fluid:nth-child(9) {
+  background-image: url('../images/back_contacto.jpg');
+}
+.title-section {
+  display: block;
+  min-height: 3rem;
+  width: 100%;
+}
+.timeline-box {
+  border-radius: .2rem;
+  height: 12rem;
+  margin: 0 1rem;
+  width: calc((100% - 1rem) / 5);
+}
+.timeline-week {
+  width: 100%;
+  padding: 0 1rem;
+}
+.timeline-weeks {
+  color: #ffffff;
+  height: 2.6rem;
+  width: calc((100% - 1rem) / 5);
+}
+/* Colors for timeline box */
+.timeline-box:first-child,
+.timeline-weeks:first-child {
+  background-color: var(--apple);
+}
+.timeline-box:nth-child(2),
+.timeline-weeks:nth-child(2) {
+  background-color: var(--yellow);
+}
+.timeline-box:nth-child(3),
+.timeline-weeks:nth-child(3) {
+  background-color: var(--orange);
+}
+.timeline-box:nth-child(4),
+.timeline-weeks:nth-child(4) {
+  background-color: var(--magenta);
+}
+.timeline-box:nth-child(5),
+.timeline-weeks:nth-child(5) {
+  background-color: var(--purple);
+}
+/* End colors for timeline box */
+/*=====  End of Section box  ======*/
+
+/*=======================================
+=            Section buttons            =
+=======================================*/
+.btn {
+  display: inline-block;
+  font-family: var(--oswald);
+  padding: .5rem 1rem;
+  border: none;
+  border-radius: .2rem;
+}
+.btn-cian,
+.btn-purple {
+  color: #FFF;
+}
+.btn-cian {
+  background-color: var(--cian);
+}
+.btn-purple {
+  background-color: var(--purple);
+}
+
+/*=====  End of Section buttons  ======*/
+
+/*====================================
+=            Section Home            =
+====================================*/
+
+.logo-complete {
+  content: url('../images/Logo_index.png');
+  margin-top: 10rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.box-home-text {
+  margin-top: 1rem;
+  font-size: 1.7rem;
+}
+.box-home-text em {
+  font-size: 3rem;
+}
+.text-home {
+  padding: 1rem 2rem;
+  margin: 0 1rem;
+}
+.logo-home {
+  display: flex;
+  justify-content: center;
+  /* align-content: center; */
+}
+.btn-home {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin: 1rem 4rem;
+  padding: .7rem 2rem;
+}
+
+/*=====  End of Section Home  ======*/
+
+/*=====================================
+=            Section about            =
+=====================================*/
+
+.box-about {
+  margin: 5rem 2rem 0 2rem;
+  font-size: 1.2rem;
+}
+.size-font {
+  font-size: 1.7rem;
+}
+.screenshots1,
+.screenshots2,
+.screenshots3,
+.screenshots4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 80%;
+}
+.screenshots1 {
+  content: url('../images/screenshot1.png');
+  /* width: 70%; */
+}
+.screenshots2 {
+  content: url('../images/screenshots2.png');
+  /* width: 70%; */
+}
+.screenshots3 {
+  content: url('../images/screenshots3.png');
+  /* width: 70%; */
+}
+.screenshots4 {
+  content: url('../images/screenshot4.png');
+  /* width: 70%; */
+}
+.heart-icon {
+  content: url('../images/pride.svg');
+  width: 3%;
+}
+.pride {
+  content: url("../images/people-pride.svg");
+  width: inherit;
+}
+.btn-github {
+  margin: 2rem auto;
+}
+.text-why {
+  margin: 3rem 0;
+}
+.m-font {
+  margin-left: 2rem;
+}
+.w-100:nth-child(1) .m-font {
+  margin-top: 4rem;
+}
+.container-video {
+  min-height: 100vh;
+  margin: 1rem auto;
+  width: 80%;
+}
+.video {
+  height: 100%;
+  width: 100%;
+}
+/*=====  End of Section about  ======*/
+
+
+/*========================================
+=            Section Timeline            =
+========================================*/
+
+.icon-bom {
+  content: url('../images/idea.svg');
+}
+.icon-diagram {
+  content: url('../images/diagram.svg');
+}
+.icon-clock {
+  content: url('../images/clock.svg');
+}
+.icon-people {
+  content: url('../images/progress.svg');
+}
+.icon-smile {
+  content: url('../images/smile.svg');
+}
+.icon-bom,
+.icon-diagram,
+.icon-clock,
+.icon-people,
+.icon-smile {
+  width: inherit;
+  margin: 0 auto;
+  filter: opacity(.5);
+}
+.mx-2 {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+.mt-n4 {
+  margin-top: -4rem;
+}
+.icons-height {
+  height: 12%;
+}
+.timeline-weeks p {
+  margin-top: .3rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.timeline-box:nth-child(even) {
+  margin-top: -5rem;
+}
+.text-center {
+  text-align: center;
+}
+.text-box {
+  color: #000;
+  font-family: var(--oswald);
+  margin: 0.4rem 1rem 0 1rem;
+}
+.title-box {
+  color: #000;
+  font-size: 1.2rem;
+  font-family: var(--oswald);
+  padding: .5rem;
+  text-align: center;
+}
+.timeline-box:last-child .title-box {
+  color: #fff;
+}
+.team-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: calc(100% / 4);
+}
+.team-box:nth-child(1) .figure {
+  content: url('../images/Joshi.png');
+  margin-left: 2rem;
+}
+.team-box:nth-child(1) .name {
+  margin-left: 2rem;
+}
+.team-box:nth-child(2) .figure {
+  content: url('../images/Auris.png');
+}
+.team-box:nth-child(3) .figure {
+  content: url('../images/Willy.png');
+}
+.team-box:nth-child(4) .figure {
+  content: url('../images/Paulis.png');
+}
+.icons-social {
+  display: flex;
+  justify-content: center;
+}
+.name {
+  font-family: var(--oswald);
+  font-size: 1.5rem;
+  margin-top: .7rem;
+  text-align: center;
+  width: 85%;
+}
+.icon-twitter {
+  content: url('../images/twitter.svg');
+}
+.icon-github {
+  content: url('../images/github-image.svg');
+  margin: 0 .5rem;
+}
+.icon-linkedin {
+  content: url('../images/linkedin.svg');
+  margin-left: 0.5rem;
+}
+
+.icon-twitter,
+.icon-github,
+.icon-linkedin {
+  width: 12%;
+}
+.line-box {
+  width: calc((100% - 1rem) / 5);
+}
+.line-box:nth-child(odd) {
+  height:10rem;
+}
+.line-box:nth-child(even) {
+  height: 5rem;
+}
+.line-box:nth-child(1) .lines {
+  background-color: var(--apple);
+}
+.line-box:nth-child(2) .lines {
+  background-color: var(--yellow);
+}
+.line-box:nth-child(3) .lines {
+  background-color: var(--orange);
+}
+.line-box:nth-child(4) .lines {
+  background-color: var(--magenta);
+}
+.line-box:nth-child(5) .lines {
+  background-color: var(--purple);
+}
+.lines {
+  margin: 0 auto;
+  height: 100%;
+  width: 8%;
+}
+
+/*=====  End of Section Timeline  ======*/
+
+
+/*=============================================
+=            Section Soon download            =
+=============================================*/
+
+.simple-logo {
+  content: url('../images/logo_descarga.png');
+  margin: 5rem auto 0 auto;
+  width: 50%;
+}
+.hands {
+  background-image: url(../images/Hands.png);
+  min-height: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-left: 1rem;
+  margin-top: 5rem;
+}
+.letters-download {
+  font-size: 3.2rem;
+  font-family: var(--anton);
+  margin-left: 2rem;
+}
+.text-right-download {
+  margin: 1.5rem 0;
+  font-size: 1.7rem;
+  font-family: var(--anton);
+}
+.play-store {
+  content: url('../images/google-play-badge.svg');
+  width: 20%;
+  margin: 0 auto;
+}
+
+/*=====  End of Section Soon download  ======*/
+
+
+
+/*=======================================
+=            Section Contact            =
+=======================================*/
+
+.contact-container {
+  color: #FFF;
+  font-size: 1.4rem;
+  margin: 2.2rem auto;
+  min-height: calc((100vh - 50px) / 2);
+  padding: 1rem;
+  text-align: center;
+  width: 50%;
+}
+.contact-container h1 {
+  color: #FFF;
+  font-size: 2rem;
+  margin-top: 6rem;
+}
+
+.form {
+  border: none;
+  border-bottom: 1px solid #FFF;
+  background-color: transparent;
+  margin: .76rem 0.5rem;
+  color: #FFF;
+}
+.contact-container button {
+  font-size: 1rem;
+  padding: .5rem 2rem;
+}
+.form::placeholder {
+  text-align: center;
+  color: hsla(0, 100%, 100%, 80%);
+}
+
+/*=====  End of Section Contact  ======*/
+
+
+/*====================================
+=            Section Help            =
+====================================*/
+.help-container {
+  display: flex;
+  min-height: 90vh;
+  width: 100%;
+}
+.bg-help {
+  background-image: url('../images/back_footer.jpg');
+  background-repeat: no-repeat;
+  background-size:cover;
+  z-index: -1;
+}
+.align {
+
+  display: flex;
+  align-items: center;
+}
+.line {
+  content: url('../images/linea_contacto.png');
+  height: 100%;
+  width: 30%;
+  margin-top: 1rem;
+}
+.twit-icon {
+  content: url('../images/twitter.svg');
+}
+.insta-icon {
+  content: url('../images/instagram.svg');
+}
+.face-icon {
+  content: url('../images/facebook.svg');
+}
+.twit-icon, .insta-icon, .face-icon {
+  width: 5%;
+}
+.social {
+  display: flex;
+  justify-content: space-around;
+}
+.terms {
+  list-style: none;
+  font-family: var(--oswald);
+  margin-left: 5rem;
+}
+.terms li {
+  margin-bottom: .7rem;
+}
+.black {
+  color: black;
+}
+.letter {
+  margin-left: 2rem;
+}
+.letter p:first-child {
+  font-size: 4rem;
+  margin-top: -7rem;
+  font-family: var(--anton);
+}
+.letter p:nth-child(2) {
+  font-family: var(--dancing);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+.letter p:nth-child(3) {
+  font-size: 1.5rem;
+  margin-bottom: .5rem;
+}
+.letter p:nth-child(4) {
+  font-size: 1.6rem;
+  margin-bottom: 3rem;
+}
+
+
+/*=====  End of Section Help  ======*/
