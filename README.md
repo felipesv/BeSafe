@@ -45,40 +45,49 @@ $ flask run
 
 ## Mockups :notebook:
 
-### _structures_
-![Alt text](https://i.imgur.com/EYMrrMC.png)
+### _structure_
+The besafe structure is based on two servers with nginx and flask to handle all the content, and one loadbalancer to distribute the load of requests. Firebase is used for data storage on the client side and on the server side.
+![Alt text](https://i.imgur.com/KoC8EtA.png)
 
-### _First Mockups_
+### _Mockups_
 ![Alt text](https://imgur.com/0bzIRzS.png)
 
-### _Second Mockups_
 ![Alt text](https://i.imgur.com/ZfUs0Vd.png)
 
-### _Reports_
 ![Alt text](https://imgur.com/xNioCVw.png)
 
 ## Final (ScreenShots) :camera:
 
-### initiation: 📟
-
-![alt text](https://i.imgur.com/5WmGLZq.png)
-
 ### Menu: 💻
 
-![alt text](https://i.imgur.com/ajXoQl1.png)
+![alt text](https://i.imgur.com/NMAPKNJ.png)
 
 ### Map: 📍
 
-![alt text](https://i.imgur.com/tqSYl3i.png)
+![alt text](https://i.imgur.com/KhVzuda.png)
 
-### Contact: 📱
+### Registration: :registered:
 
-![alt text](https://i.imgur.com/EmAOJQH.png)
+![alt text](https://i.imgur.com/xbEa95E.png)
 
-### comments: 📨
+### Login: :door:
+![alt text](https://i.imgur.com/4v6SVMT.png)
 
-![alt text](https://i.imgur.com/nPecjll.png)
+### Report: :newspaper:
+![alt text](https://i.imgur.com/8KYZbJk.png)
+![alt text](https://i.imgur.com/SOLP0vL.png)
+![alt text](https://i.imgur.com/UZ5CBGC.png)
+![alt text](https://i.imgur.com/xcg6998.png)
+![alt text](https://i.imgur.com/SzKKFmA.png)
+![alt text](https://i.imgur.com/tydm3zT.png)
 
+### Filters: :file_cabinet:
+
+![alt text](https://i.imgur.com/IpowToo.png)
+
+### Contact: :email:
+
+![alt text](https://i.imgur.com/OjllcjB.png)
 
 ## Authors 📜
 
